@@ -1,0 +1,81 @@
+body {
+    padding: 0px;
+    margin: 0px ;
+    border: none;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+div{
+    position: relative;
+    width: 100vw ;
+    background-color: #141E46;
+}
+.top_bar{
+    display: flex;
+    height: 100%;
+    background-image: url("img/login_background.jpg");
+    background-size: 100%;
+}
+.top_bar h1{
+    float: left;
+    font-size: 60px;
+    position: relative;
+    height: 70px;
+    margin-left: 25px;
+    color: #FF6969;
+    background-color: #141E46;
+}
+.top_bar img{
+    position: relative;
+    height: 20px;
+    width: 20px;
+    margin-top: 70px;
+    right: -60px;
+}
+.top_bar a{
+    position: relative;
+    margin-top: 70px;
+    margin-left: 5px;
+    margin-right: 12px;
+    right: -60px;
+    color: azure    ;
+    text-decoration: none;
+    font-weight: bold;
+}
+.toolbar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.toolbar img{
+    display: flex;
+    justify-content: center;
+    margin-left: 70px;
+}
+.toolbar p{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-size: xx-large;
+    margin-top: 1px;
+}
+
+.toolbar label,input{
+    justify-content: center;
+    font-weight: bolder;
+}
+.toolbar button{
+    background-color: #C70039;
+    justify-content: center;
+    border-radius: 10px;
+    height: 25px;
+    width: 80px;
+    transition: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
