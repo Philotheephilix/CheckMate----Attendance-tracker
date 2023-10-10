@@ -1,81 +1,114 @@
-body {
-    padding: 0px;
-    margin: 0px ;
-    border: none;
-    position: relative;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+:root{
+    --bg : #000000;
+    --red : #eb3b5a;
+    --pur : #8854d0;
+}
+
+    
+body{
+    height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f1f1f1;
-    font-family: Arial, sans-serif;
+    background-color: var(--bg);
+    background-image: url(Fingerprint-bro.svg);
+    background-repeat: repeat-x;
+    background-position: center;
 }
-div{
-    position: relative;
-    width: 100vw ;
-    background-color: #141E46;
+.container{
+    width: 800px ;
+    background-color: rgb(25, 25, 25);
+    padding: 25px 40px 10px 40px;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    border-radius: 10px;
+    z-index: 1;
 }
-.top_bar{
-    display: flex;
-    height: 100%;
-    background-image: url("img/login_background.jpg");
-    background-size: 100%;
-}
-.top_bar h1{
-    float: left;
-    font-size: 60px;
-    position: relative;
-    height: 70px;
-    margin-left: 25px;
-    color: #FF6969;
-    background-color: #141E46;
-}
-.top_bar img{
-    position: relative;
-    height: 20px;
-    width: 20px;
-    margin-top: 70px;
-    right: -60px;
-}
-.top_bar a{
-    position: relative;
-    margin-top: 70px;
-    margin-left: 5px;
-    margin-right: 12px;
-    right: -60px;
-    color: azure    ;
-    text-decoration: none;
-    font-weight: bold;
-}
-.toolbar {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.title{
     text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #dd697e;
 }
-.toolbar img{
+.container form{
+    padding: 30px 0px 30px 0px;
+    
+}
+.row{
     display: flex;
-    justify-content: center;
-    margin-left: 70px;
+    margin : 32px 0px;
 }
-.toolbar p{
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bolder;
-    font-size: xx-large;
-    margin-top: 1px;
+.form-group{
+    width: 100%;
+    margin: 0px 20px;
+    height : 40px;
+    position :relative;
+    
+    
 }
 
-.toolbar label,input{
-    justify-content: center;
-    font-weight: bolder;
+.form-group input,.sub{
+    background-color: rgb(25, 25, 25);
+    display: block;
+    height: 100%;
+    width : 100%;
+    border: none;
+    outline: none;
+    
 }
-.toolbar button{
-    background-color: #C70039;
-    justify-content: center;
-    border-radius: 10px;
-    height: 25px;
-    width: 80px;
-    transition: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+.form-group input{
+    border-bottom: 1px solid #8a8888 ;
 }
+.form-group label {
+    position: absolute; 
+    bottom: 15px;
+    pointer-events: none;
+    transition: 0.2s ease-in;
+    color: #8a8888;
+}
+.form-group input:focus ~ label,
+.form-group input:valid ~ label {
+    transform: translatey(-20px);
+    color: var(--pur);
+    font-size: 12px;
+
+}
+
+span{
+    
+    bottom: -7px;
+    
+    padding-right: 10px;
+}
+.underline{
+    width: 100%;
+    height: 2px;
+    background-color: var(--pur);
+    position: absolute;
+    bottom: 0;
+    transform: scaleX(0);
+    transition: 0.3s ease;
+
+}
+.form-group input:focus ~ .underline,
+.form-group input:valid ~ .underline {
+   transform: scale(1);
+
+}
+
+
+
+.sub{
+    background-color: var(--red);
+    color: #ededed;
+    font-size: 13px;
+    border-radius: 4px;
+}   
