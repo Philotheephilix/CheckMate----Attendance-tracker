@@ -40,7 +40,9 @@ body{
     font-size: 25px;
     text-transform: uppercase;
     font-weight: 600;
-    color: #dd697e;
+    color: #dd3f5c;
+    pointer-events: none;
+    user-select: none;
 }
 .container form{
     padding: 30px 0px 30px 0px;
@@ -72,6 +74,7 @@ body{
     border-bottom: 1px solid #8a8888 ;
     color: #ffffff;
     background-color: rgba(25, 25, 25,0);
+    z-index: 1;
 }
 .form-group label {
     position: absolute; 
@@ -81,20 +84,27 @@ body{
     color: #bababa;
     padding-left: 3px;
     font-size: 13px;
+    user-select: none;
+    z-index: -2;
 }
 .form-group input:focus ~ label,
 .form-group input:valid ~ label {
     transform: translatey(-20px);
     color: var(--pur);
     font-size: 10px;
+    z-index: -1;
+    pointer-events: none;
 
-}
+} #togglePassword{
+    position: absolute;
+    bottom: 15px ;
+    left: 90%;
+    background-color: rgba(25, 25, 25,0);
+    border: none;
+   color: #8a8888;
+   font-weight: 100;
+   
 
-span{
-    
-    bottom: -7px;
-    
-    padding-right: 10px;
 }
 .underline{
     width: 100%;
@@ -122,6 +132,7 @@ span{
     border-radius: 4px;
     font-family: sans-serif;
     font-weight: 100;
+    user-select: none;
 
 }   
 .sub:hover{
