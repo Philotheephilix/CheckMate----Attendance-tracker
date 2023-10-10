@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROJECT X</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-<body>
-    
+<body>  
    <div class="container">
     <div class="title">LOGIN</div>
-  <form action="#">
+  <form action="/login" method="post">
     <div class="row">
         <div class="form-group">
-            <input type="text" required id="userid"/>
+            <input type="text" id="username" name="username" required>
             <div class="underline"></div>
             <label for="userid">
                  USER ID</label>
@@ -23,39 +22,18 @@
     </div>
      <div class="row">
         <div class="form-group">
-            <input type="password" required ID="PASSWORD" autocomplete="off" />
+            <input type="password" id="password" name="password" required autocomplete="off" >
             <div class="underline"></div>
             <label for="password">PASSWORD</label>
         </div>
      </div>
 
-    <div class="row">
-        <div class="form-group "> 
            
-           <button class="sub" onclick="login()">SUBMIT</button>
-          
-        </div>
-    </div>
+            <input class="sub" type="submit" value="Login">          
+
   </form>
    </div>
    
    
 </body>
-<script>
-        var outputElement = document.getElementById("AS");
-function login(){
-        // Make an AJAX request to your Python script
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "login.py", true);
-        
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                var response = xhr.responseText;
-                outputElement.textContent = "Python function says: " + response;
-            }
-        };
-
-        xhr.send();
-    }
-    </script>
 </html>

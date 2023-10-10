@@ -19,7 +19,7 @@ body{
     justify-content: center;
     align-items: center;
     background-color: var(--bg);
-    background-image: url(Fingerprint-bro.svg);
+    background-image: url(img/Fingerprint-bro.svg);
     background-repeat: repeat-x;
     background-position: center;
 }
@@ -111,4 +111,5 @@ span{
     color: #ededed;
     font-size: 13px;
     border-radius: 4px;
+    height: 35px;
 }   
