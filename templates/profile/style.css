@@ -1,37 +1,154 @@
-body{
-    padding: 0%;
-    margin: 0%;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans', sans-serif;
 }
-.titlebar {
-    position: relative;
-    display: flex;
-    height: 80px;
-    background-color: #363062;
-}
-.titlebar img:first-of-type{
-    background-color: white;
-    border-radius: 17px;
-    margin: 10px    ;
-} 
-.titlebar h1{
-    color: #F99417;
-}
-.titlebar img:nth-of-type(2){
-    position: relative;
-    margin-top: 30px;
-    height: 13px;
-    width: 13px;
+:root{
     
+    --bg : #000000;
+    --red : #ee2046;
+    --pur : #a879e9;
+    --dpink:#ff002f;
+    --gray : rgba(25, 25, 25,1);
+}
+body{
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
 
 }
-.titlebar a{
-    position: relative;
-    color: aliceblue;
+.navbar{
+    background-image: linear-gradient(60deg , rgba(40, 40, 40,0.5),rgba(45, 45, 45,0.4),rgb(40, 40, 40,0.5));
+    display: flex ;
+    opacity: 1;
+    justify-content: space-between;
+    width: 90%;
+    height : 75px;
+    box-shadow: 0px 0px 100px #9445cc42;
+    border-radius: 8px ;
     margin-left: auto;
-    margin-top: 30px;
-    text-decoration: none;
-    margin-right: 20px;
-    font-weight: bolder;
-    font-family: 'Times New Roman', Times, serif;
+    margin-right: auto;
+    margin-top: 20px;
+    position: sticky;
+    backdrop-filter: blur(100px);
+    
+}
+.menu{
+    display: flex;
+    padding: 20px;
+    
+}
+.item{
+    font-size: 13px;
+    padding: 0px 10px 13px;
+    margin-right: 6px;
+    font-weight: 100;
+    color: #bfbfbf;
+    user-select: none;
+    transition: 1s ease;
+    transition: 0.2s ease-out;
+    position: relative;
+}
+i{  
+    
+    font-size: 20px;
+    padding-right: 5px;
 }
 
+.logo{
+    font-size: 20px;
+    padding: 25px 50px ;
+    color: var(--red);
+}
+
+
+.menu div:hover,#active{
+    font-size: 14px;
+    font-weight: 200;
+    color: var(--dpink);
+   
+    border-bottom: 1px solid var(--red);
+    
+   
+}
+#active{
+    background-color: var(--gray);
+    box-shadow: 0px 0px 10px rgba(25, 25, 25,1);
+    border-radius: 5px;
+}
+.checkbtn{
+    font-size: 50px;
+    color: #a3a3a300;
+    position:absolute;
+    left : 90%;
+    bottom:37%;
+    cursor: pointer;
+    display: none;
+    user-select: none;
+}
+#check{
+    display: none;
+}
+@media (max-width:952px){
+    .logo{
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width:800px){
+    .checkbtn{
+        color: #a3a3a3; 
+
+    }
+    
+    .menu{
+        position: fixed;
+        width: 80%;
+        left: -100%;
+        padding: 5%;
+        margin-left: 10%;
+        margin-right: 10%;
+        backdrop-filter: blur(100px);
+        background-image: linear-gradient(45deg,rgb(132, 132, 132,0.5),rgb(100,100,100,0.5));
+        top:100px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 21px;
+        transition:  0.01s ease-in;
+
+    }
+    .menu{
+        display: block;
+        
+
+        
+    }
+    .menu div{
+        padding: 20px 10px;
+    }
+    .menu div:hover,#active{
+        background-color:#a3a3a300 ;
+        border: none;
+        box-shadow: 0px 0px 0px  rgba(0, 0, 0, 0);
+        font-size: 25px;
+        
+    }
+    .item{
+        font-size: 25px;
+        
+    }
+    
+    #check:checked ~ .checkbtn{
+        color: #a879e9;
+    }
+    i{
+        font-size: 35px;
+        padding-right: 15px;
+        
+    }
+    
+}
+    
+    
