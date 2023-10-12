@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
-
+import pymongo
 app = Flask(__name__)
-
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["mydatabase"]
+collection = db["studentusercred"]
 # Dummy user data for demonstration (replace this with a database in a real application)
 users = {"valan": "priyanka",
          "neelam" :"merlyn",
