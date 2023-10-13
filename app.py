@@ -24,8 +24,12 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
 
-    if username in users and users[username] == password:
-        # Successful login, redirect to a different page
+    result = collection.find_one({"key": "value"})
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    result=str(resultt["Reg No"])
+    if password==result:
+        print("done")
         return redirect(url_for("profile",username=username))
     else:
         # Invalid credentials, show an error message
@@ -35,21 +39,21 @@ def login():
 
 @app.route("/profile/<username>")
 def profile(username):
-    j=0
-    for i in range(len(users_list)):
-        if users_list[i][0]==username:
-            j=i
-            pass
-    name=users_list[i][0]
-    yr=users_list[i][1]
-    sem=users_list[i][2]
-    dep=users_list[i][3]
-    regno=users_list[i][4]
-    roll=users_list[i][5]
-    email=users_list[i][6]
-    phone=users_list[i][7]
-    username=users_list[j]
-    return render_template("profile/index.html",username=username)
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    print(resultt)
+    name=resultt["name"]
+    print(name)
+    roll=resultt["Roll No"]
+    reg=resultt["Reg No"]
+    yr=resultt["Yr"]
+    age=resultt["Age"]
+    sem=resultt["Sem"]
+    dob=resultt["DOB"]
+    email=resultt["Email"]
+    cls=resultt["Cls"]
+    ph=resultt["phone"]
+    return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph)
     
 
 
