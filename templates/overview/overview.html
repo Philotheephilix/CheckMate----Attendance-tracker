@@ -35,8 +35,8 @@
     
     
     <div class="overview item" id="active"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div></a>
-    <div class="profile item" ><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-person-fill"></i>PROFILE</a></div>
-    <div class="report item"><a style="color: inherit" href="{{ url_for('profile', username=username) }}"><i class="bi bi-bar-chart-fill"></a></i>REPORT</div>
+    <div class="profile item"  ><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-person-fill"></i>PROFILE</a></div>
+    <div class="report item"><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-bar-chart-fill"></a></i>REPORT</div>
     <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div></div>
 <input type="checkbox"  class = "check" id="check"  >
 <label for="check"  class=" checkbtn material-symbols-outlined">
@@ -78,8 +78,8 @@
         </div>
     </div>
            
-<script>
-     var checkbox = document.getElementById("check");
+    <script>
+        var checkbox = document.getElementById("check");
     var menuElements = document.getElementsByClassName("menu");
     var logout =document.getElementById("logout");
     var logtab = document.getElementsByClassName("logout-tab");
@@ -123,6 +123,6 @@ f=0;}
     
     
     updateMenuStyle();
-</script>  
+       </script>  
 </body>
 </html>
