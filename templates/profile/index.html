@@ -32,24 +32,25 @@
         <div class="menu">
             
             
-            <div class="overview item"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div>
+            <div class="overview item">  <a href="{{ url_for('overview', username=username) }}"><i class="bi bi-pie-chart-fill"></i> OVERVIEW</a></div>
             <div class="profile item"  id="active"><i class="bi bi-person-fill"></i>PROFILE</div>
             <div class="report item"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
-            <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
+            <div class="logout item"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
         </div>
         <input type="checkbox"  class = "check" id="check"  >
         <label for="check"  class=" checkbtn material-symbols-outlined">
             menu
             </label>
     </div>
+    
     <div class="logout-tab">
-        <div class="close" id="close"><i class="bi bi-x-circle-fill"></i></div>
-        <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
-        <div class="btns">
-            <button type="button" class="cancel" id="cancel"><i class="bi bi-x"></i>Cancel</button>
-            <button type="button" class="out"><i class="bi bi-box-arrow-left"></i>logout</button>
-        </div>
+    <div class="close" id="close"><i class="bi bi-x-circle-fill"></i></div>
+    <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
+    <div class="btns">
+        <button type="button" class="cancel" id="cancel"></i>Cancel</button>
+        <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
     </div>
+</div>
     <div class="profiletab">
         <div class="row">
             <div class="img">
@@ -58,13 +59,21 @@
         </div>
                 <div class="detail">
                     
-                    <div class="title">
-                    <div class="name">SAIRAM</div></div>
+                    <div class="title">        
+                        {% if name %}
+                        <div class="name">{{ name }}</div></div>
+                        {% endif %}
                 
                     <div class="other">
-                    <div class="dept">CSE-B</div>
-                    <div class="yr">II</div>
-                    <div class="regno">311122104113</div>
+                    {% if cls %}
+                    <div class="dept">{{ cls }}</div>
+                    {% endif %}
+                    {% if yr %}
+                    <div class="yr">{{ yr }}</div>
+                    {% endif %}
+                    {% if reg %}
+                    <div class="regno">{{ reg }}</div>
+                    {% endif %}
                 </div>
                 </div>
                
@@ -74,25 +83,34 @@
                
                <div class="rowg">
                 <ul>
-                    <li>SEMESTER : 3</li>
-                    <LI>AGE : 18</LI>
-
+                    {% if sem %}
+                    <li>SEMESTER : {{ sem }}</li>
+                    {% endif %}
+                    {% if age: %}
+                    <LI>AGE : {{ age }}</LI>
+                    {% endif %}
                 </ul>
         
                </div>
                <div class="rowg">
                 <ul>
-                    <li>MOBILE NO : 9841176609</li>
-                    <LI>E-MAIL : sairam.26csb@licet.ac.in</LI>
-
+                    {% if ph %}
+                    <li>Ph. No : {{ ph }}</li>
+                    {% endif %}
+                    {% if email %}
+                    <LI>EMAIL-ID : {{ email }}</LI>
+                    {% endif %}
                 </ul>
         
                </div>
                <div class="rowg">
                 <ul>
-                    <li>DOB :12/03/2005</li>
-                    <LI>ROLL NO : 22CS122</LI>
-
+                    {% if dob %}
+                    <li>DOB : {{ dob }}</li>
+                    {% endif %}
+                    {% if roll %}
+                    <LI>ROLL : {{ roll }}</LI>
+                    {% endif %}
                 </ul>
                </div>
             </div>
@@ -101,47 +119,55 @@
 
 
 
-    <script>
-        var checkbox = document.getElementById("check");
-    var menuElements = document.getElementsByClassName("menu");
-    var logout =document.getElementById("logout");
-    var logtab = document.getElementsByClassName("logout-tab");
-    var f =0;
-    var clos = document.getElementById("close");
-    var can = document.getElementById("cancel");
-    // Function to update the style of menu elements based on checkbox state
-    function updateMenuStyle() {
-        for (var i = 0; i < menuElements.length; i++) {
-            if (checkbox.checked) {
-                menuElements[i].style.left = "0";
-            } else {
-                menuElements[i].style.left = "-150%"; // Hide the menu
-            }
+<script>
+var checkbox = document.getElementById("check");
+var menuElements = document.getElementsByClassName("menu");
+var logoutButtons = document.getElementsByClassName("logout");
+var logtab = document.getElementsByClassName("logout-tab");
+var f = 0;
+var clos = document.getElementById("close");
+var can = document.getElementById("cancel");
+
+function updateMenuStyle() {
+    for (var i = 0; i < menuElements.length; i++) {
+        if (checkbox.checked) {
+            menuElements[i].style.left = "0";
+        } else {
+            menuElements[i].style.left = "-100%";
         }
     }
-    function updateLogout() {
-        for (var i = 0; i < logtab.length; i++) {
-            if (f==0) {
-                logtab[i].style.left = "0";
-                f=1;
-            } else {
-                logtab[i].style.left = "-100%";
-                f=0; // Hide the menu
-            }
+}
+
+function updateLogout() {
+    for (var i = 0; i < logtab.length; i++) {
+        if (f == 0) {
+            logtab[i].style.left = "0";
+            f = 1;
+        } else {
+            logtab[i].style.left = "-100%";
+            f = 0;
         }
     }
-    function closer(){
-        
-        for (var i = 0; i < logtab.length; i++) {
+}
+
+function closer() {
+    for (var i = 0; i < logtab.length; i++) {
         logtab[i].style.left = "-100%";
-        f=0;}
+        f = 0;
     }
-    
-    checkbox.addEventListener("change", updateMenuStyle);
-    logout.addEventListener("click", updateLogout);
-    clos.addEventListener("click",closer );
-    can.addEventListener("click", closer);
-   closer();
-    updateMenuStyle();
-       </script>  </body>
+}
+
+checkbox.addEventListener("change", updateMenuStyle);
+
+for (var i = 0; i < logoutButtons.length; i++) {
+    logoutButtons[i].addEventListener("click", updateLogout);
+}
+
+clos.addEventListener("click", closer);
+can.addEventListener("click", closer);
+
+closer();
+updateMenuStyle();
+</script>  
+</body>
 </html>
