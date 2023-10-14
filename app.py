@@ -22,13 +22,23 @@ def login():
     result=str(resultt["Reg No"])
     if password==result:
         print("done")
-        return redirect(url_for("profile",username=username))
+        return redirect(url_for("overview",username=username))
     else:
         # Invalid credentials, show an error message
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
 
-
+@app.route("/overview/<username>" )
+def overview(username):
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    perc=resultt["attendance"]
+    print(perc)
+    perc_ring=perc*3.6
+    perc="{:.2f}".format(perc)
+    atte_per=resultt["atte_per"]
+    total_per=resultt["total_per"]
+    return(render_template("overview/overview.html",username=username,perc=perc,perc_ring=perc_ring,atte_per=atte_per,total_per=total_per))
 @app.route("/profile/<username>")
 def profile(username):
     query={"Roll No":username}
