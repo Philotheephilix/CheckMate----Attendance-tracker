@@ -35,7 +35,7 @@
     
     
     <div class="overview item" id="active"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div>
-    <div class="profile item"  ><i class="bi bi-person-fill"></i>PROFILE</div>
+    <div class="profile item"  ><a href="{{ url_for('profile', username=username) }}""><i class="bi bi-person-fill"></i>PROFILE</a></div>
     <div class="report item"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
     <div class="logout item"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
 </div>

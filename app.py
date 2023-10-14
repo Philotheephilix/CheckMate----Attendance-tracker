@@ -28,7 +28,7 @@ def login():
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
 
-@app.route("/overview/<username>")
+@app.route("/overview/<username>" )
 def overview(username):
     query={"Roll No":username}
     resultt=collection.find_one(query)
@@ -38,8 +38,7 @@ def overview(username):
     perc="{:.2f}".format(perc)
     atte_per=resultt["atte_per"]
     total_per=resultt["total_per"]
-
-    return(render_template("overview/overview.html",perc=perc,perc_ring=perc_ring,atte_per=atte_per,total_per=total_per))
+    return(render_template("overview/overview.html",username=username,perc=perc,perc_ring=perc_ring,atte_per=atte_per,total_per=total_per))
 @app.route("/profile/<username>")
 def profile(username):
     query={"Roll No":username}
