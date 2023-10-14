@@ -2,17 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 import pymongo
 app = Flask(__name__)
 client = pymongo.MongoClient("mongodb://localhost:27017/")
-db = client["mydatabase"]
-collection = db["studentusercred"]
+db = client["Project-X"]
+collection = db["studentDet"]
 # Dummy user data for demonstration (replace this with a database in a real application)
-users = {"valan": "priyanka",
-         "neelam" :"merlyn",
-         "sairam" : "Lancey"}
-users_list=[["valan","II","3","CSE","311122104125","22cs199","Valan@gmail.com","83572527357",],
-            ["neelam","II","3","CSE","311122104125","22cs199","neelam@gmail.com","83572527357",],
-            ["sairam","II","3","CSE","311122104125","22cs199","lancey@gmail.com","83572527357",],
-            ["philo","II","3","CSE","311122104125","22cs199","philo@gmail.com","83572527357",],
-            ["admin","II","3","CSE","311122104125","22cs199","admin@gmail.com","83572527357",]]
 
 @app.route("/")
 def index():
