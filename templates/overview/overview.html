@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='overview.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=IBM+Plex+Sans:wght@100;400&family=Raleway+Dots&display=swap" rel="stylesheet">
@@ -47,15 +47,25 @@
 
     <div class="insights">
         <div class="percent">
-            <div class="disc perc">
-                <span class="progress-value">0%</span>
+            {% if perc_ring %}
+            <div class="disc perc"style="background: conic-gradient(#6f00ff,#ff007b {{ perc_ring }}deg, #000000b0 0deg)">
+            {% endif %}
+                {% if perc %}
+                <span class="progress-value" >{{ perc }}%</span>
+                {% endif %}
             </div>
             <span class="perctext">ATTENDANCE PERCENTAGE</span>
         </div>
         <div class="periods">
-            <div class="disc period">
-                <span class="period-value">126/150</span>
+            {% if atte_per %}
+            {% if total_per %}
+            {% if perc %}
+            <div class="disc period"style="background: conic-gradient(#6f00ff,#ff007b {{ perc_ring }}deg, #000000b0 0deg)" >
+                <span class="period-value">{{ atte_per }}/{{ total_per }}</span>
             </div>
+            {% endif %}
+            {% endif %}
+            {% endif %}
             <span class="peritext">NO. OF PERIODS ATTENDED
             </span>
             

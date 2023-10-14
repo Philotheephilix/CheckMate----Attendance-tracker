@@ -142,7 +142,6 @@ i{
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    background: conic-gradient(#6f00ff,#ff007b 3.6deg, #000000b0 0deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -153,7 +152,6 @@ i{
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    background: conic-gradient(#6f00ff,#ff007b 3.6deg, #000000b0 0deg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,6 +187,12 @@ i{
 .disc:active{
     scale: 0.99;
 }
+
+
+
+
+
+
 @media (max-width:952px){
     .logo{
         font-size: 20px;

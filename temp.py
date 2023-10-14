@@ -40,14 +40,26 @@ for row in range(1, sheet.max_row + 1):
             "Email": "Sample@email.com",
             "Cls": "CSE-B",
             "phone": 9876543210,
-            "attendance": perc
+            "attendance": perc,
+            "atte_per":attended,
+            "total_per":total
         }
         exist=collection.find_one({"Roll No": roll_no} )
         if exist:
             percc=exist["_id"]
             print(perc)
             print("skipped")
-            res=collection.update_one({"Roll No": roll_no},{"$set":{"attendance":perc}})
+            update_query = {
+            "$set": {
+            "attendance": perc,
+            "atte_per": attended,
+            "total_per": total
+                        }
+                    }
+            res=collection.update_one({"Roll No": roll_no},update_query)
+            #collection.update_one({"Roll No": roll_no},{"$set":{"atte_per":attended}})
+            #collection.update_one({"Roll No": roll_no},{"$set":{"total_per":total}})
+
             print(res)
         else:
             print("added")
