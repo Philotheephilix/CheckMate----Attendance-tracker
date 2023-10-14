@@ -19,6 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+   
 
 }
 .navbar{
@@ -99,9 +100,10 @@ i{
     justify-content: space-around;
     flex-direction: row;
         user-select: none;
-        position: absolute;
+       position: absolute;
+       margin-top: 10%;
        margin-bottom: 5%;
-        top: 15%;
+        top:20%;
         width: 90%;
         height: max-content;
         left: 5%;
@@ -144,6 +146,7 @@ i{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 .period{
     position: relative;
@@ -154,6 +157,7 @@ i{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 
 }
 .disc::before{
@@ -179,8 +183,11 @@ i{
     font-size: 20px;
     padding-top:20px ;
 }
-.period:hover,.perc:hover{
-    scale: 1.03;
+.disc:hover{
+    scale: 1.04;
+}
+.disc:active{
+    scale: 0.99;
 }
 @media (max-width:952px){
     .logo{
@@ -322,9 +329,11 @@ i{
         margin-bottom: 3%;
     }
     .peritext{
+        margin-top: 3%;
         bottom: 7%;
     }
     .perctext{
+        margin-top: 3%;
         bottom: 55%;
     }
      
