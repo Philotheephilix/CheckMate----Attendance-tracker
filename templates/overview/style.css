@@ -19,7 +19,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-   
+   position: relative;
 
 }
 .navbar{
@@ -103,7 +103,7 @@ i{
        position: absolute;
        margin-top: 10%;
        margin-bottom: 5%;
-        top:20%;
+        top:50%;
         width: 90%;
         height: max-content;
         left: 5%;
@@ -189,6 +189,12 @@ i{
 .disc:active{
     scale: 0.99;
 }
+
+
+
+
+
+
 @media (max-width:952px){
     .logo{
         font-size: 20px;
@@ -227,6 +233,9 @@ i{
 }
 
 @media (max-width:844px){
+    .insights{
+        top:80%;
+    }
     .navbar.sticky{
         top:0;
         position: sticky;
@@ -317,6 +326,7 @@ i{
 }
 @media (max-width:600PX){
     .insights{
+        top:80%;
         height: max-content;
         flex-wrap: wrap;
         flex-grow: 1;
@@ -338,4 +348,3 @@ i{
     }
      
 }
-
