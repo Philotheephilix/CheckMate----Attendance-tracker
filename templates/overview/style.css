@@ -1,0 +1,449 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'IBM Plex Sans', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+:root{
+    
+    --bg : #000000;
+    --red : #ee2046;
+    --pur : #a879e9;
+    --dpink:#ff002f;
+    --gray : rgba(25, 25, 25,1);
+}
+body{
+    background-color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   position: relative;
+
+}
+.navbar{
+    background-image: linear-gradient(60deg , rgba(40, 40, 40,0.5),rgba(45, 45, 45,0.4),rgb(40, 40, 40,0.5));
+    display: flex ;
+    opacity: 1;
+    justify-content: space-between;
+    width: 90%;
+    height : 75px;
+    
+    border-radius: 8px ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    position: sticky;
+    backdrop-filter: blur(100px);
+    z-index: 2;
+    
+}
+.menu{
+    display: flex;
+    padding: 20px;
+    
+}
+.item{
+    font-size: 13px;
+    padding: 0px 10px 13px;
+    margin-right: 6px;
+    font-weight: 100;
+    color: #bfbfbf;
+    user-select: none;
+    transition: 1s ease;
+    transition: 0.2s ease-out;
+    position: relative;
+}
+i{  
+    
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+.logo{
+    font-size: 20px;
+    padding: 25px 50px ;
+    color: var(--red);
+}
+
+
+.menu div:hover,#active{
+    font-size: 14px;
+    font-weight: 200;
+    color: var(--dpink);
+   
+    border-bottom: 1px solid var(--red);
+    
+   
+}
+#active{
+    background-color: var(--gray);
+    box-shadow: 0px 0px 10px rgba(25, 25, 25,1);
+    border-radius: 5px;
+}
+.checkbtn{
+    font-size: 50px;
+    color: #a3a3a300;
+    position:absolute;
+    left : 90%;
+    bottom:37%;
+    cursor: pointer;
+    display: none;
+    user-select: none;
+}
+#check{
+    display: none;
+}
+.insights{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+        user-select: none;
+       position: absolute;
+       margin-top: 10%;
+       margin-bottom: 5%;
+        top:50%;
+        width: 90%;
+        height: max-content;
+        left: 5%;
+        padding: 2%;
+        border-radius: 5px;
+        z-index: -1;
+        background-image: linear-gradient(45deg,#ff007746,#c800ff16,#ff00ff2e);
+           
+    
+}
+
+
+.percent,.periods{
+    background-color:rgba(19, 19, 19, 0.5) ;
+    display: flex;
+    padding-top: 2%;
+    padding-left: 8%;
+    padding-right: 8%;
+    border-radius: 8px;
+    padding-bottom: 8%;
+   
+   
+    
+}
+.percent{
+    margin-left: 20px;
+    border-radius: 8px;
+}
+.periods{
+    margin-right: 20px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.perc{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: conic-gradient(#6f00ff,#ff007b 3.6deg, #000000b0 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+.period{
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: conic-gradient(#6f00ff,#ff007b 3.6deg, #000000b0 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+.disc::before{
+    content: "";
+    position: absolute;
+    background-color: #000000;
+    ;
+    height: 210px;
+    width: 210px;
+    border-radius: 50%;
+}
+.progress-value,.period-value{
+    position: absolute;
+    color: var(--red);
+   
+    font-size: 40px;
+    
+}
+.perctext,.peritext{
+    position: absolute;
+    bottom: 10%;
+    color:  #bfbfbf;
+    font-size: 20px;
+    padding-top:20px ;
+}
+.disc:hover{
+    scale: 1.04;
+}
+.disc:active{
+    scale: 0.99;
+}
+.logout-tab{
+    position: fixed;
+    width: 30%;
+    TOP:40%;
+    left: -100%;
+    height:max-content;
+    padding: 1% 2% 2%;
+    margin-left: 35%;
+    margin-right: 35%;
+    backdrop-filter: blur(100px);
+    background-image: linear-gradient(45deg,rgb(132, 132, 132,0.2),rgb(100,100,100,0.3));
+    color: #b5acb5;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    transition:  0.3s ease-in-out;
+    z-index: 2;
+}
+.logout-tab .btns{
+    display: flex;
+    justify-content: space-around;
+}
+.logout-tab .cancel{
+    border: none;
+    padding: 1% 2% 2%;
+    background-color: #ff002f;
+    margin-top: 6%;
+    border-radius: 5px;
+    color: #f5f5f5;
+}
+.logout-tab .out{
+    border: none;
+    padding: 1% 2% 2%;
+    background-color: var(--pur);
+    margin-top: 6%;
+    border-radius: 5px;
+    color: #f5f5f5;   
+}
+.out i {
+    font-size: 17px;
+    color: #f5f4f6;
+}
+.cancel i{
+    font-size: 17px;
+    padding: 0;
+}
+.close{
+    padding: 0px;
+   margin-left: 95%;
+   margin-bottom: 4%;
+}
+.close i{
+    font-size: 20px;
+}
+.cancel:hover,.out:hover,.close:hover{
+    scale: 1.05;
+    
+}
+.cancel:hover{
+    background-color: #ff0048;
+}
+.out:hover{
+    background-color:#905bda ;
+
+}
+
+
+
+
+
+@media (max-width:952px){
+    .logo{
+        font-size: 20px;
+    }
+}
+@media (max-width:862px){
+    
+    .perctext,.peritext{
+        
+        font-size: 16px;
+        
+    }
+    .progress-value,.period-value{
+        
+        font-size: 30px;
+        
+    }
+    
+    .perc{
+        
+        height: 200px;
+        width: 200px;
+        
+    }
+    .period{ 
+        height: 200px;
+        width: 200px;
+        
+    }
+    .disc::before{
+       
+        height: 170px;
+        width: 170px;
+        
+    }
+    .logout-tab{
+        font-size: 12px;
+    }
+    .close i{
+        font-size: 14px;
+    }
+    .logout-tab .cancel,.logout-tab .out{
+        font-size: 12px;
+        padding:0% 4% 2%;
+    }
+    .out i{
+        padding: 3px;
+    }
+
+}
+
+@media (max-width:844px){
+    .insights{
+        top:80%;
+    }
+    .navbar.sticky{
+        top:0;
+        position: sticky;
+    }
+    .checkbtn{
+        color: #a3a3a3; 
+
+    }
+    
+    .menu{
+       position: fixed;
+        width: 100%;
+        left: -200%;
+        height:60vh;
+        padding: 5%;
+        margin-left: auto;
+        margin-right: auto;
+        backdrop-filter: blur(100px);
+        background-image: linear-gradient(45deg,rgb(132, 132, 132,1),rgb(100,100,100,0.9));
+        top:100px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 21px;
+        transition:  0.1s ease-in;
+       
+
+    }
+    .menu{
+        display: block;
+        
+
+        
+    }
+    .menu div{
+        padding: 20px 10px;
+    }
+    .menu div:hover,#active{
+        background-color:#a3a3a300 ;
+        border: none;
+        box-shadow: 0px 0px 0px  rgba(0, 0, 0, 0);
+        font-size: 25px;
+        
+    }
+    .item{
+        font-size: 25px;
+        
+    }
+    
+    #check:checked ~ .checkbtn{
+        color: #a879e9;
+    }
+    i{
+        font-size: 35px;
+        padding-right: 15px;
+        
+    }
+   
+   
+    .perctext,.peritext{
+        
+        font-size: 12px;
+        
+    }
+    .progress-value,.period-value{
+        
+        font-size: 20px;
+        
+    }
+    
+    .perc, .period{
+        
+        height: 150px;
+        width: 150px;
+        
+    }
+  
+    
+    .disc::before{
+       
+        height: 110px;
+        width: 110px;
+        
+    }
+    .periods{
+       margin-left: 8%;
+       padding-bottom: 8%;
+    }
+    .logout-tab{
+        background-color: #000000;
+    }
+   
+}
+@media (max-width:600PX){
+    .insights{
+        top:80%;
+        height: max-content;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        flex-basis: 100px;
+       
+    }
+    
+    .percent,.periods{
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+    .peritext{
+        margin-top: 3%;
+        bottom: 7%;
+    }
+    .perctext{
+        margin-top: 3%;
+        bottom: 55%;
+    }
+    .logout-tab{
+        font-size: 10px;
+        background-color: #000000;
+    }
+    .close i{
+        font-size: 11px;
+    }
+    .logout-tab .cancel,.logout-tab .out{
+        font-size: 10px;
+        padding:0% 3% 2%;
+    }
+    .cancel i,.out i{
+            font-size: 12px;
+    }
+    .out i{
+        padding: 3px;
+    }
+     
+}
