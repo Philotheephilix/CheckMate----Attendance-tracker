@@ -94,118 +94,6 @@ i{
 #check{
     display: none;
 }
-
-.profiletab {
-    user-select: none;
-    position: absolute;
-   margin-bottom: 5%;
-    top: 15%;
-    width: 90%;
-    height: 80VH;
-    left: 5%;
-    padding: 2%;
-    border-radius: 5px;
-    z-index: -1;
-    background-image: linear-gradient(45deg,#ff007746,#c800ff16,#ff00ff2e);
-       
-}
-.row{
-    
-    margin: 10px;
-    display: flex;
-   justify-content: space-around;
-   
- 
-}
-.detail{
-    
-    background-color:rgba(19, 19, 19, 0.5) ;
-    padding-top: 2%;
-    padding-left: 10%;
-    padding-right: 10%;
-    border-radius: 8px;
-    padding-bottom: 8%;
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.023); 
-   border: 1px solid rgba(19, 19, 19, 1) ;
-}
- 
-.detail .title{
-    font-size: 100px;
-    color: var(--red);
-    
-    
-}
-.name{
-    font-family: 'Bebas Neue', sans-serif;
-    font-weight: 100;
-}
-.other {
-    display: flex;
-    font-weight: 100;
-    font-size: 18px;
-    color:rgb(179, 177, 177) ;
-}
-.other div{
-    text-align: center;
-    padding-top:8% ;
-    padding-right: 10px;
-}
-.img{
-    height: 200px;
-    width: 200px;
-   
-    padding: 10%;
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.026) ;
-    background-color:rgba(19, 19, 19, 0.5) ;
-    border-radius: 50%;
-    
-}
-.pinfo{
-    border: 1px solid rgba(19, 19, 19, 0.5) ;
-    border-radius: 10px;
-    margin-top: 5%;
-    background-color:rgba(19, 19, 19, 0.5) ;
-    width: 100%;
-    height: max-content;
-    
-    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.023); 
-   
-}
-
-ul{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 2%;
-    
-}
-ul li{
-    font-size: 20px;
-    color: #cc37d9;
-    padding: 2% 0%;
-    font-weight: 100;
-    
-    
-
-}
-.detail:hover{
-    background-color:rgba(20, 20, 21, 1) ;
-    scale: 1.03;
-   transition: 0.25s ease-in-out;
-    
-    box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
-    
-}
-.pinfo:hover{
-    box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
-    background-color:rgba(19, 19, 19, 1) ;
-    scale: 1.03;
-   transition: 0.25s ease-in-out; 
-   color:#bb3bc6 ; 
-}
-li :hover{
-    color:#bb3bc6 ; 
-    font-size: 20px;
-}
 .logout-tab{
     position: fixed;
     width: 30%;
@@ -228,8 +116,7 @@ li :hover{
     position: fixed;
     width: 30%;
     TOP:40%;
-    left: -100%;
-    user-select: none;
+    
     height:max-content;
     padding: 1% 2% 2%;
     margin-left: 35%;
@@ -308,8 +195,7 @@ li :hover{
 
 }
 
-
-
+    
 
 @media (max-width:952px){
     .logo{
@@ -332,8 +218,8 @@ li :hover{
     }
 }
 @media (max-width:844px){
-    .logout-tab,.report-tab{
-        background-color: #0000008a;
+    .logout-tab{
+        background-color: #000000;
     }
 }
 
@@ -393,85 +279,6 @@ li :hover{
         padding-right: 15px;
         
     }
-    .profiletab{
-        height: max-content;
-    }
-    .detail .title{
-        font-size: 50px;
-        color: var(--red);
-        padding-bottom: 0%;
-        
-    }
-    .row{
-        display: block;
-       
-    }
-    .detail{
-        margin-top: 15%;
-        text-align: center;
-        padding-top: 2%;
-        padding-left: 7%;
-        padding-right: 7%;
-        border-radius: 8px;
-        padding-bottom: 2%;
-       
-    }
-    .img{
-        margin-top: 3%;
-        margin-bottom: 3%;
-        height: 150px;
-        width: 150px;
-        background-color: var(--gray);
-        padding: 10%;
-       margin-left: auto;
-       margin-right: auto;
-        border-radius: 50%;
-        
-    }
-    .other {
-        display: flex;
-        justify-content: center;
-
-        font-size: 13px;
-       
-    }
-    .other div{
-        text-align: center;
-    padding-top:4% ;
-    padding-right: 10px;
-    
-    
-        
-    }
-
-    .pinfo ul li{
-       
-        font-size: 13px;
-    }
-    .pinfo{
-        margin-top: 8%;
-        padding-top: 3%;
-        padding-bottom: 3%;
-       
-        
-    }
-     ul{
-        text-align: center;
-        display: block;
-        
-       
-    }
-    .detail:hover{
-        background-color:rgba(20, 20, 21, 1) ;
-        scale: 1.02;
-       transition: 0.3s ease-in;
-        
-        box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
-        
-    }
-    .pinfo:hover{
-        scale: 1.02;
-    }
     .logout-tab,.report-tab{
         width: 50%;
         margin-left: 25%;
@@ -492,7 +299,5 @@ li :hover{
     .out i,.download i{
         padding: 3px;
     }
-}
 
-    
-    
+}
