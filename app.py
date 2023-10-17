@@ -1,16 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
-
+import pymongo
 app = Flask(__name__)
-
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["Project-X"]
+collection = db["studentDet"]
 # Dummy user data for demonstration (replace this with a database in a real application)
-users = {"valan": "priyanka",
-         "neelam" :"merlyn",
-         "sairam" : "Lancey"}
-users_list=[["valan","II","3","CSE","311122104125","22cs199","Valan@gmail.com","83572527357",],
-            ["neelam","II","3","CSE","311122104125","22cs199","neelam@gmail.com","83572527357",],
-            ["sairam","II","3","CSE","311122104125","22cs199","lancey@gmail.com","83572527357",],
-            ["philo","II","3","CSE","311122104125","22cs199","philo@gmail.com","83572527357",],
-            ["admin","II","3","CSE","311122104125","22cs199","admin@gmail.com","83572527357",]]
 
 @app.route("/")
 def index():
@@ -22,32 +16,46 @@ def login():
     username = request.form["username"]
     password = request.form["password"]
 
-    if username in users and users[username] == password:
-        # Successful login, redirect to a different page
-        return redirect(url_for("profile",username=username))
+    result = collection.find_one({"key": "value"})
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    result=str(resultt["Reg No"])
+    if password==result:
+        print("done")
+        return redirect(url_for("overview",username=username))
     else:
         # Invalid credentials, show an error message
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
 
-
+@app.route("/overview/<username>" )
+def overview(username):
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    perc=resultt["attendance"]
+    print(perc)
+    perc_ring=perc*3.6
+    perc="{:.2f}".format(perc)
+    atte_per=resultt["atte_per"]
+    total_per=resultt["total_per"]
+    return(render_template("overview/overview.html",username=username,perc=perc,perc_ring=perc_ring,atte_per=atte_per,total_per=total_per))
 @app.route("/profile/<username>")
 def profile(username):
-    j=0
-    for i in range(len(users_list)):
-        if users_list[i][0]==username:
-            j=i
-            pass
-    name=users_list[i][0]
-    yr=users_list[i][1]
-    sem=users_list[i][2]
-    dep=users_list[i][3]
-    regno=users_list[i][4]
-    roll=users_list[i][5]
-    email=users_list[i][6]
-    phone=users_list[i][7]
-    username=users_list[j]
-    return render_template("profile/index.html",username=username)
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    print(resultt)
+    name=resultt["name"]
+    print(name)
+    roll=resultt["Roll No"]
+    reg=resultt["Reg No"]
+    yr=resultt["Yr"]
+    age=resultt["Age"]
+    sem=resultt["Sem"]
+    dob=resultt["DOB"]
+    email=resultt["Email"]
+    cls=resultt["Cls"]
+    ph=resultt["phone"]
+    return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph)
     
 
 
