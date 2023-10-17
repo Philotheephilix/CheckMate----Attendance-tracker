@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='overview.css') }}">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=IBM+Plex+Sans:wght@100;400&family=Raleway+Dots&display=swap" rel="stylesheet">
@@ -34,10 +34,11 @@
 <div class="menu">
     
     
-    <div class="overview item" id="active"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div></a>
-    <div class="profile item" ><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-person-fill"></i>PROFILE</a></div>
-    <div class="report item"><a style="color: inherit" href="{{ url_for('profile', username=username) }}"><i class="bi bi-bar-chart-fill"></a></i>REPORT</div>
-    <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div></div>
+    <div class="overview item" id="active"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div>
+    <div class="profile item"  ><i class="bi bi-person-fill"></i>PROFILE</div>
+    <div class="report item"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
+    <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
+</div>
 <input type="checkbox"  class = "check" id="check"  >
 <label for="check"  class=" checkbtn material-symbols-outlined">
     menu
@@ -47,36 +48,28 @@
     <div class="close" id="close"><i class="bi bi-x-circle-fill"></i></div>
     <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
     <div class="btns">
-        <button type="button" class="cancel" id="cancel"></i>Cancel</button>
-        <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
+        <button type="button" class="cancel" id="cancel"><i class="bi bi-x"></i>Cancel</button>
+        <button type="button" class="out"><i class="bi bi-box-arrow-left"></i>logout</button>
     </div>
 </div>
+
     <div class="insights">
         <div class="percent">
-            {% if perc_ring %}
-            <div class="disc perc"style="background: conic-gradient(#6f00ff,#ff007b {{ perc_ring }}deg, #000000b0 0deg)">
-            {% endif %}
-                {% if perc %}
-                <span class="progress-value" >{{ perc }}%</span>
-                {% endif %}
+            <div class="disc perc">
+                <span class="progress-value">0%</span>
             </div>
             <span class="perctext">ATTENDANCE PERCENTAGE</span>
         </div>
         <div class="periods">
-            {% if atte_per %}
-            {% if total_per %}
-            {% if perc %}
-            <div class="disc period"style="background: conic-gradient(#6f00ff,#ff007b {{ perc_ring }}deg, #000000b0 0deg)" >
-                <span class="period-value">{{ atte_per }}/{{ total_per }}</span>
+            <div class="disc period">
+                <span class="period-value">126/150</span>
             </div>
-            {% endif %}
-            {% endif %}
-            {% endif %}
             <span class="peritext">NO. OF PERIODS ATTENDED
             </span>
             
         </div>
     </div>
+   
            
     <script>
         var checkbox = document.getElementById("check");
@@ -92,7 +85,6 @@
             if (checkbox.checked) {
                 menuElements[i].style.left = "0";
             } else {
-                menuElements[i].style.left = "-100%"; // Hide the menu
                 menuElements[i].style.left = "-150%"; // Hide the menu
             }
         }
@@ -109,19 +101,17 @@
         }
     }
     function closer(){
-
-for (var i = 0; i < logtab.length; i++) {
-logtab[i].style.left = "-100%";
-f=0;}
-}
+        
+        for (var i = 0; i < logtab.length; i++) {
+        logtab[i].style.left = "-100%";
+        f=0;}
+    }
     
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );
     can.addEventListener("click", closer);
    closer();
-    
-    
     updateMenuStyle();
        </script>  
 </body>
