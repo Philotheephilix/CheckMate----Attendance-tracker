@@ -36,8 +36,7 @@
     
     <div class="overview item" id="active"> <i class="bi bi-pie-chart-fill"></i> OVERVIEW</div></a>
     <div class="profile item"  ><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-person-fill"></i>PROFILE</a></div>
-    <div class="report item"><a href="{{ url_for('profile', username=username) }}"><i class="bi bi-bar-chart-fill"></a></i>REPORT</div>
-    <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div></div>
+    <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>    <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div></div>
 <input type="checkbox"  class = "check" id="check"  >
 <label for="check"  class=" checkbtn material-symbols-outlined">
     menu
@@ -50,6 +49,15 @@
         <button type="button" class="cancel" id="cancel"></i>Cancel</button>
         <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
     </div>
+</div>
+<div class="report-tab">
+    <div class="closer" id="closer"><i class="bi bi-x-circle-fill"></i></div>
+    <div class="msg">Do you want to download full attendance report ?</div>
+    <div class="btns">
+        <button type="button" class="cancelr" id="cancelr"><i class="bi bi-x"></i>Cancel</button>
+        <button type="button" class="download"><i class="bi bi-cloud-arrow-down-fill"></i>Download</button>
+    </div>
+</div>
 </div>
     <div class="insights">
         <div class="percent">
@@ -77,7 +85,8 @@
             
         </div>
     </div>
-           
+        
+
     <script>
         var checkbox = document.getElementById("check");
     var menuElements = document.getElementsByClassName("menu");
@@ -86,13 +95,17 @@
     var f =0;
     var clos = document.getElementById("close");
     var can = document.getElementById("cancel");
+    var report =document.getElementById("report");
+    var reptab = document.getElementsByClassName("report-tab");
+    var j =0;
+    var closerr= document.getElementById("closer");
+    var cancelrr= document.getElementById("cancelr");
     // Function to update the style of menu elements based on checkbox state
     function updateMenuStyle() {
         for (var i = 0; i < menuElements.length; i++) {
             if (checkbox.checked) {
                 menuElements[i].style.left = "0";
             } else {
-                menuElements[i].style.left = "-100%"; // Hide the menu
                 menuElements[i].style.left = "-150%"; // Hide the menu
             }
         }
@@ -102,27 +115,50 @@
             if (f==0) {
                 logtab[i].style.left = "0";
                 f=1;
+                reptab[i].style.left = "-100%";
+                j=0; 
             } else {
                 logtab[i].style.left = "-100%";
-                f=0; // Hide the menu
+                f=0;
+                 // Hide the menu
             }
         }
     }
     function closer(){
-
-for (var i = 0; i < logtab.length; i++) {
-logtab[i].style.left = "-100%";
-f=0;}
-}
+        
+        for (var i = 0; i < logtab.length; i++) {
+        logtab[i].style.left = "-100%";
+        f=0;}
+    }
+    function updatereport() {
+        for (var i = 0; i < reptab.length; i++) {
+            if (j==0) {
+                reptab[i].style.left = "0";
+                j=1;
+                logtab[i].style.left = "-100%";
+                f=0;
+            } else {
+                reptab[i].style.left = "-100%";
+                j=0; 
+            }
+        }
+    }
+    function closerrr(){
+        
+        for (var i = 0; i < reptab.length; i++) {
+        reptab[i].style.left = "-100%";
+        j=0;}
+    }
     
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );
+    report.addEventListener("click", updatereport);
     can.addEventListener("click", closer);
+    closerr.addEventListener("click",closerrr );
+    cancelrr.addEventListener("click", closerrr);
+    closerrr();
    closer();
-    
-    
     updateMenuStyle();
-       </script>  
-</body>
+       </script>  </body>
 </html>
