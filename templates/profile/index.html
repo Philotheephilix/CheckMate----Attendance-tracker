@@ -42,6 +42,15 @@
             menu
             </label>
     </div>
+    
+    <div class="logout-tab">
+    <div class="close" id="close"><i class="bi bi-x-circle-fill"></i></div>
+    <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
+    <div class="btns">
+        <button type="button" class="cancel" id="cancel"></i>Cancel</button>
+        <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
+    </div>
+</div>
     <div class="profiletab">
         <div class="row">
             <div class="img">
@@ -110,25 +119,55 @@
 
 
 
-   <script>
-    var checkbox = document.getElementById("check");
+<script>
+var checkbox = document.getElementById("check");
 var menuElements = document.getElementsByClassName("menu");
+var logoutButtons = document.getElementsByClassName("logout");
+var logtab = document.getElementsByClassName("logout-tab");
+var f = 0;
+var clos = document.getElementById("close");
+var can = document.getElementById("cancel");
 
-// Function to update the style of menu elements based on checkbox state
 function updateMenuStyle() {
     for (var i = 0; i < menuElements.length; i++) {
         if (checkbox.checked) {
             menuElements[i].style.left = "0";
         } else {
-            menuElements[i].style.left = "-100%"; // Hide the menu
+            menuElements[i].style.left = "-100%";
         }
+    }
+}
+
+function updateLogout() {
+    for (var i = 0; i < logtab.length; i++) {
+        if (f == 0) {
+            logtab[i].style.left = "0";
+            f = 1;
+        } else {
+            logtab[i].style.left = "-100%";
+            f = 0;
+        }
+    }
+}
+
+function closer() {
+    for (var i = 0; i < logtab.length; i++) {
+        logtab[i].style.left = "-100%";
+        f = 0;
     }
 }
 
 checkbox.addEventListener("change", updateMenuStyle);
 
+for (var i = 0; i < logoutButtons.length; i++) {
+    logoutButtons[i].addEventListener("click", updateLogout);
+}
 
+clos.addEventListener("click", closer);
+can.addEventListener("click", closer);
+
+closer();
 updateMenuStyle();
-   </script>
+</script>  
 </body>
 </html>
