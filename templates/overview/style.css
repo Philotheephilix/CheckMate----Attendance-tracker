@@ -182,6 +182,12 @@ i{
     color:  #bfbfbf;
     font-size: 20px;
     padding-top:20px ;
+    font-weight: 200;
+    transition: 0.3s ease-in-out;
+}
+.perctext:hover,.peritext:hover{
+    border-bottom: 0.2px solid;
+   
 }
 .disc:hover{
     scale: 1.04;
