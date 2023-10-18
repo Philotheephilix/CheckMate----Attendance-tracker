@@ -106,9 +106,10 @@ i{
     padding: 2%;
     border-radius: 5px;
     z-index: -1;
-    background-image: linear-gradient(45deg,#ff007746,#c800ff16,#ff00ff2e);
-       
+    
 }
+
+
 .row{
     
     margin: 10px;
@@ -117,12 +118,20 @@ i{
    
  
 }
+.img i{
+    font-size: 1000%;
+    color: #a3a3a3;
+   position: absolute;
+   bottom:65%;
+
+}
 .detail{
     
-    background-color:rgba(19, 19, 19, 0.5) ;
+    background-color:rgba(51, 51, 51, 0.5) ;
     padding-top: 2%;
     padding-left: 10%;
     padding-right: 10%;
+    transition: 0.25s ease-in-out;
     border-radius: 8px;
     padding-bottom: 8%;
     box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.023); 
@@ -153,21 +162,24 @@ i{
 .img{
     height: 200px;
     width: 200px;
-   
+   display:flex;
     padding: 10%;
     box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.026) ;
     background-color:rgba(19, 19, 19, 0.5) ;
     border-radius: 50%;
+    justify-content: center;
+   align-items: center;
+
     
 }
 .pinfo{
     border: 1px solid rgba(19, 19, 19, 0.5) ;
     border-radius: 10px;
     margin-top: 5%;
-    background-color:rgba(19, 19, 19, 0.5) ;
+    background-color:rgba(51, 51, 51, 0.5) ;
     width: 100%;
     height: max-content;
-    
+    transition: 0.25s ease-in-out; 
     box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.023); 
    
 }
@@ -176,31 +188,24 @@ ul{
     display: flex;
     justify-content: space-between;
     padding-left: 2%;
+    padding-right: 2%;
     
 }
 ul li{
-    font-size: 20px;
-    color: #cc37d9;
+    font-size: 17px;
+    color: #d181d8;
     padding: 2% 0%;
     font-weight: 100;
     
     
 
 }
-.detail:hover{
-    background-color:rgba(20, 20, 21, 1) ;
-    scale: 1.03;
-   transition: 0.25s ease-in-out;
+
+.pinfo:hover,.detail:hover{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.514); 
+    background-color:rgba(53, 53, 53, 0.6) ;
+    scale: 1.02;
     
-    box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
-    
-}
-.pinfo:hover{
-    box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
-    background-color:rgba(19, 19, 19, 1) ;
-    scale: 1.03;
-   transition: 0.25s ease-in-out; 
-   color:#bb3bc6 ; 
 }
 li :hover{
     color:#bb3bc6 ; 
@@ -428,6 +433,7 @@ li :hover{
         border-radius: 50%;
         
     }
+
     .other {
         display: flex;
         justify-content: center;
@@ -462,11 +468,10 @@ li :hover{
        
     }
     .detail:hover{
-        background-color:rgba(20, 20, 21, 1) ;
-        scale: 1.02;
-       transition: 0.3s ease-in;
         
-        box-shadow: 0px 0px 5px rgba(81, 81, 81, 0.362); 
+        scale: 1.02;
+      
+        
         
     }
     .pinfo:hover{
