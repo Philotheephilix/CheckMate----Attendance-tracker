@@ -124,7 +124,7 @@
     <div class="msg">Do you want to download full attendance report ?</div>
     <div class="btns">
         <button type="button" class="cancelr" id="cancelr"><i class="bi bi-x"></i>Cancel</button>
-        <a href="{{ url_for('report',username=username) }}" target="_blank"><button type="button" class="download"><i class="bi bi-cloud-arrow-down-fill"></i>Download</button></a>
+        <button type="button" class="download"><a href="{{ url_for('report',username=username) }}" target="_blank"><i class="bi bi-cloud-arrow-down-fill"></i>Download</a></button>
     </div>
 </div>
 </div>
