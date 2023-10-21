@@ -5,6 +5,10 @@ from flask import Flask, render_template, request, redirect, url_for, send_file
 import pymongo
 import xlsxwriter
 app = Flask(__name__)
+try:
+    os.mkdir("report_data")
+except:
+    pass
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]
