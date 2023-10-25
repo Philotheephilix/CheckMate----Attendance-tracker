@@ -39,9 +39,20 @@ body{
     z-index: 2;
     
 }
+.blocker{
+   
+    position: fixed;
+    transition: 0.3s ease-in-out;
+   backdrop-filter: blur(1px);
+    width: 100%;
+    height: 500vh;
+    z-index: 1;
+    background-color: #00000064;
+}
 .menu{
     display: flex;
     padding: 20px;
+    z-index: 2;
     
 }
 .item{
@@ -54,6 +65,7 @@ body{
     transition: 1s ease;
     transition: 0.2s ease-out;
     position: relative;
+    z-index: 2;
 }
 i{  
     
@@ -109,7 +121,7 @@ i{
         left: 5%;
         padding: 2%;
         border-radius: 5px;
-        z-index: -1;
+        z-index: 0;
        
            
     
@@ -147,6 +159,7 @@ i{
     justify-content: center;
     align-items: center;
     z-index: 2;
+   
 }
 .period{
     position: relative;
@@ -158,13 +171,14 @@ i{
     justify-content: center;
     align-items: center;
     z-index: 2;
+   
 
 }
 .disc::before{
     content: "";
     position: absolute;
     background-color: #000000;
-    ;
+    
     height: 210px;
     width: 210px;
     border-radius: 50%;
@@ -185,10 +199,7 @@ i{
     font-weight: 200;
     transition: 0.3s ease-in-out;
 }
-.perctext:hover,.peritext:hover{
-    border-bottom: 0.2px solid;
-   
-}
+
 .disc:hover{
     scale: 1.04;
 }
@@ -211,7 +222,7 @@ i{
     text-align: center;
     font-size: 14px;
     transition:  0.3s ease-in-out;
-    z-index: 2;
+    z-index: 3;
 }
 .report-tab{
     position: fixed;
@@ -230,7 +241,7 @@ i{
     text-align: center;
     font-size: 14px;
     transition:  0.3s ease-in-out;
-    z-index: 2;
+    z-index: 3;
 }
 
 .logout-tab .btns,.report-tab .btns{
@@ -363,19 +374,19 @@ i{
     
     .menu{
        position: fixed;
-        width: 100%;
+        width: 80%;
         left: -200%;
-        height:60vh;
+        height:max-content;
         padding: 5%;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 10%;
+        margin-right: 10%;
         backdrop-filter: blur(100px);
         background-image: linear-gradient(45deg,rgb(132, 132, 132,1),rgb(100,100,100,0.9));
         top:100px;
         border-radius: 10px;
         text-align: center;
         font-size: 21px;
-        transition:  0.1s ease-in;
+        transition:  0.3s ease-in-out;
        
 
     }
