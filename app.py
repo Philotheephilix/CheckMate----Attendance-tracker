@@ -4,7 +4,18 @@ import csv
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import pymongo
 import xlsxwriter
+from PIL import Image
 app = Flask(__name__)
+UPLOAD_FOLDER = 'static/profile_db'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+try:
+    os.mkdir("static/profile_db")
+except:
+    pass
 try:
     os.mkdir("report_data")
 except:
@@ -35,7 +46,7 @@ def login():
         # Invalid credentials, show an error message
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
-
+    
 @app.route("/overview/<username>" )
 def overview(username):
     query={"Roll No":username}
@@ -65,6 +76,17 @@ def profile(username):
     ph=resultt["phone"]
     return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph)
     
+@app.route('/upload/<username>', methods=['POST'])
+def upload(username):   
+    file = request.files['image']
+    if file:
+        file.filename=username+".jpg"
+        filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(filename)
+        with Image.open(filename) as img:
+            # Save the image with reduced quality
+            img.save(filename, 'JPEG', quality=50, optimize=True)
+        return 'File uploaded successfully'
 
 @app.route("/report/<username>")
 def report(username):
@@ -75,7 +97,6 @@ def report(username):
     input_excel_file = 'data/attendance.xlsx'
     data = pd.read_excel(input_excel_file)
     data.to_csv('report_data/'+username+'/output.csv', index=False)
-
     with open('report_data/'+username+"/output.csv", mode='r') as file:
         csv_reader = csv.reader(file)
         list=[]

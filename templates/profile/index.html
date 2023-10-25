@@ -53,12 +53,18 @@
 </div>
     <div class="profiletab">
         <div class="row">
-            <div class="img">
-                <input type="file"  accept="image/*" name="image" id="edit" style="display:none;">
+            <form action="/upload/{{ roll }}" method="POST" enctype="multipart/form-data">
 
-                <label for="edit" class="edit-btn"><i class="bi bi-pencil-square"></i></label>
+            <div class="img">
+                
+                <img src="{{ url_for('static', filename='profile_db/' + roll + '.jpg') }}" alt="">
+                <input type="file" id="imageInput" style="display: none;" onchange="uploadFile(this)" style="display:none;">
+                <label for="edit" class="edit-btn"><i class="bi bi-pencil-square" onclick="document.getElementById('imageInput').click()"></i></label>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script src="{{ url_for('static', filename='script.js') }}"></script>
             
-        </div>
+            </div>
+            </form>
                 <div class="detail">
                     
                     <div class="title">        
@@ -203,5 +209,24 @@
     closerrr();
    closer();
     updateMenuStyle();
+    function uploadFile(input) {
+    var file = input.files[0];
+    var formData = new FormData();
+    formData.append('image', file);
+
+    $.ajax({
+        url: '/upload/{{ roll }}',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error uploading file: ', error);
+        }
+    });
+}
        </script>  </body>
 </html>
