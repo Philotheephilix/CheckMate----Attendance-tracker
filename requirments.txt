@@ -1,0 +1,13 @@
+>>>PROJECT - X<<<
+by- @philotheephilix, @sairammr
+
+1. Python version 3.10+
+2. Python libraries:
+        > pillow
+        > pandas
+        > xlsxwriter
+        > pymongo
+        > flask
+        > openpyxl
+3. Mongodb and Mongoshell installed system
+4. Necessary drive space for attendance data and database working

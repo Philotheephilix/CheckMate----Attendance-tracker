@@ -23,7 +23,6 @@ except:
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]
-# Dummy user data for demonstration (replace this with a database in a real application)
 
 @app.route("/")
 def index():
