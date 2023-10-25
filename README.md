@@ -182,19 +182,19 @@ To run **PROJECT - X**, ensure you have the following prerequisites installed:
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/login.jpg)
+![Screenshot 1](/screenshots/login.png)
 *LOGIN PAGE*
 
-![Screenshot 2](/screenshots/overview.jpg)
+![Screenshot 2](/screenshots/overview.png)
 *OVERVIEW PAGE*
 
-![Screenshot 3](/screenshots/profile.jpg)
+![Screenshot 3](/screenshots/profile.png)
 *PROFILE PAGE*
 
-![Screenshot 4](/screenshots/report.jpg)
+![Screenshot 4](/screenshots/report.png)
 *REPORT PAGE*
 
-![Screenshot 5](/screenshots/logout.jpg)
+![Screenshot 5](/screenshots/logout.png)
 *LOGOUT PAGE*
 
 ## Contributors
