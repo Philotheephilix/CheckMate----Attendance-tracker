@@ -41,7 +41,6 @@ def login():
         print("done")
         return redirect(url_for("overview",username=username))
     else:
-        # Invalid credentials, show an error message
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
     
@@ -77,6 +76,9 @@ def profile(username):
     if file_cursor is not None:
         image_data = file_cursor.read()
         encoded_image = 'data:image/jpeg;base64,' + base64.b64encode(image_data).decode('utf-8')
+    else:
+        default_image_path = 'static/img/default_profile.jpg'
+        encoded_image = 'data:image/jpeg;base64,' + base64.b64encode(open(default_image_path, 'rb').read()).decode('utf-8')
     return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph,image=encoded_image)
     
 @app.route('/upload/<username>', methods=['POST'])
