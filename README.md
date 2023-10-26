@@ -113,4 +113,3 @@ To run **PROJECT - X**, ensure you have the following prerequisites installed:
 This project is licensed under the [MIT License](LICENSE).# PROJECT - X: Attendance Tracker
 
 Welcome to **PROJECT - X**, an innovative attendance tracker application developed by @philotheephilix and @sairammr. This comprehensive tool is designed to simplify attendance management for educational institutions, providing powerful features and a user-friendly interface.
-
