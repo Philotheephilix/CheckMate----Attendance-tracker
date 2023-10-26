@@ -5,6 +5,9 @@ from flask import Flask, render_template, request, redirect, url_for, send_file
 import pymongo
 import xlsxwriter
 from PIL import Image
+import gridfs
+import io
+import base64
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -12,10 +15,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-try:
-    os.mkdir("static/profile_db")
-except:
-    pass
 try:
     os.mkdir("report_data")
 except:
@@ -73,19 +72,26 @@ def profile(username):
     email=resultt["Email"]
     cls=resultt["Cls"]
     ph=resultt["phone"]
-    return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph)
+    fs = gridfs.GridFS(db)
+    file_cursor = fs.find_one({'filename': username})
+    if file_cursor is not None:
+        image_data = file_cursor.read()
+        encoded_image = 'data:image/jpeg;base64,' + base64.b64encode(image_data).decode('utf-8')
+    return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph,image=encoded_image)
     
 @app.route('/upload/<username>', methods=['POST'])
 def upload(username):   
     file = request.files['image']
-    if file:
-        file.filename=username+".jpg"
-        filename = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filename)
-        with Image.open(filename) as img:
-            # Save the image with reduced quality
-            img.save(filename, 'JPEG', quality=50, optimize=True)
-        return 'File uploaded successfully'
+    
+    fs = gridfs.GridFS(db)
+    image = fs.find_one({'filename': username})
+    
+    if image:
+        fs.delete(image._id)
+        print("deleted")
+    image_id = fs.put(file, filename=os.path.basename(username))
+    print("added")
+    return 'File uploaded successfully'
 
 @app.route("/report/<username>")
 def report(username):
