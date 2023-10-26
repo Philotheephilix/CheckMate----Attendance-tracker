@@ -50,6 +50,8 @@
         <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
     </div>
 </div>
+<div class="blocker" id="blocker"></div>
+
 <div class="report-tab">
     <div class="closer" id="closer"><i class="bi bi-x-circle-fill"></i></div>
     <div class="msg">Do you want to download full attendance report ?</div>
@@ -93,6 +95,7 @@
     var logout =document.getElementById("logout");
     var logtab = document.getElementsByClassName("logout-tab");
     var f =0;
+    var blocker =document.getElementById("blocker");
     var clos = document.getElementById("close");
     var can = document.getElementById("cancel");
     var report =document.getElementById("report");
@@ -104,8 +107,10 @@
     function updateMenuStyle() {
         for (var i = 0; i < menuElements.length; i++) {
             if (checkbox.checked) {
-                menuElements[i].style.left = "0";
+                menuElements[i].style.left = "0"; 
+                blocker.style.display = "block";
             } else {
+                blocker.style.display = "none";
                 menuElements[i].style.left = "-150%"; // Hide the menu
             }
         }
@@ -113,11 +118,16 @@
     function updateLogout() {
         for (var i = 0; i < logtab.length; i++) {
             if (f==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
                 logtab[i].style.left = "0";
                 f=1;
                 reptab[i].style.left = "-100%";
                 j=0; 
+                blocker.style.display = "block";
             } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "block";    
                 logtab[i].style.left = "-100%";
                 f=0;
                  // Hide the menu
@@ -125,7 +135,8 @@
         }
     }
     function closer(){
-        
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
         for (var i = 0; i < logtab.length; i++) {
         logtab[i].style.left = "-100%";
         f=0;}
@@ -133,23 +144,40 @@
     function updatereport() {
         for (var i = 0; i < reptab.length; i++) {
             if (j==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
                 reptab[i].style.left = "0";
                 j=1;
                 logtab[i].style.left = "-100%";
                 f=0;
             } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "none";
                 reptab[i].style.left = "-100%";
                 j=0; 
             }
         }
     }
     function closerrr(){
-        
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
         for (var i = 0; i < reptab.length; i++) {
         reptab[i].style.left = "-100%";
         j=0;}
     }
-    
+    function closemenu(){
+        blocker.style.zIndex = "1";
+        for (var i = 0; i < menuElements.length; i++) {
+            checkbox.checked = false;
+                blocker.style.display = "none";
+                menuElements[i].style.left = "-150%"; // Hide the menu
+
+        }
+
+    }
+    blocker.addEventListener("click",closer);
+    blocker.addEventListener("click",closerrr);
+    blocker.addEventListener("click",closemenu);
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );

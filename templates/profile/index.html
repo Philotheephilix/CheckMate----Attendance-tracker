@@ -57,7 +57,7 @@
 
             <div class="img">
                 
-                <img src="{{ url_for('static', filename='profile_db/' + roll + '.jpg') }}" alt="">
+                <img src="{{ image }}" alt="">
                 <input type="file" id="imageInput" style="display: none;" onchange="uploadFile(this)" style="display:none;">
                 <label for="edit" class="edit-btn"><i class="bi bi-pencil-square" onclick="document.getElementById('imageInput').click()"></i></label>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -124,7 +124,7 @@
             </div>
         </div>
     </div>
-
+<div class="blocker" id="blocker"></div>
 <div class="report-tab">
     <div class="closer" id="closer"><i class="bi bi-x-circle-fill"></i></div>
     <div class="msg">Do you want to download full attendance report ?</div>
@@ -132,6 +132,7 @@
         <button type="button" class="cancelr" id="cancelr"><i class="bi bi-x"></i>Cancel</button>
         <button type="button" class="download"><a href="{{ url_for('report',username=username) }}" target="_blank"><i class="bi bi-cloud-arrow-down-fill"></i>Download</a></button>
     </div>
+</div>
 </div>
 </div>
 
@@ -142,6 +143,7 @@
     var logout =document.getElementById("logout");
     var logtab = document.getElementsByClassName("logout-tab");
     var f =0;
+    var blocker =document.getElementById("blocker");
     var clos = document.getElementById("close");
     var can = document.getElementById("cancel");
     var report =document.getElementById("report");
@@ -154,7 +156,10 @@
         for (var i = 0; i < menuElements.length; i++) {
             if (checkbox.checked) {
                 menuElements[i].style.left = "0";
+                blocker.style.display = "block";
+
             } else {
+                blocker.style.display = "none";
                 menuElements[i].style.left = "-150%"; // Hide the menu
             }
         }
@@ -162,11 +167,16 @@
     function updateLogout() {
         for (var i = 0; i < logtab.length; i++) {
             if (f==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
                 logtab[i].style.left = "0";
                 f=1;
                 reptab[i].style.left = "-100%";
                 j=0; 
+                blocker.style.display = "block";
             } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "none";
                 logtab[i].style.left = "-100%";
                 f=0;
                  // Hide the menu
@@ -174,6 +184,8 @@
         }
     }
     function closer(){
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
         
         for (var i = 0; i < logtab.length; i++) {
         logtab[i].style.left = "-100%";
@@ -182,23 +194,40 @@
     function updatereport() {
         for (var i = 0; i < reptab.length; i++) {
             if (j==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
                 reptab[i].style.left = "0";
                 j=1;
                 logtab[i].style.left = "-100%";
                 f=0;
             } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "none";
                 reptab[i].style.left = "-100%";
                 j=0; 
             }
         }
     }
     function closerrr(){
-        
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
         for (var i = 0; i < reptab.length; i++) {
         reptab[i].style.left = "-100%";
         j=0;}
     }
-    
+    function closemenu(){
+        blocker.style.zIndex = "1";
+        for (var i = 0; i < menuElements.length; i++) {
+            checkbox.checked = false;
+                blocker.style.display = "none";
+                menuElements[i].style.left = "-150%"; // Hide the menu
+
+        }
+
+    }
+    blocker.addEventListener("click",closer);
+    blocker.addEventListener("click",closerrr);
+    blocker.addEventListener("click",closemenu);
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );
@@ -224,8 +253,10 @@
             location.reload();
         },
         error: function(error) {
+            location.reload();
             console.error('Error uploading file: ', error);
         }
+        
     });
 }
        </script>  </body>
