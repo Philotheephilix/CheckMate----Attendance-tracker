@@ -38,6 +38,23 @@ Welcome to **PROJECT - X**, an innovative attendance tracker application develop
    - Securely store attendance data using MongoDB.
    - Access control and authentication mechanisms ensure data privacy.
 
+## Screenshots
+
+![Screenshot 1](/screenshots/login.png)
+*LOGIN PAGE*
+
+![Screenshot 2](/screenshots/overview.png)
+*OVERVIEW PAGE*
+
+![Screenshot 3](/screenshots/profile.png)
+*PROFILE PAGE*
+
+![Screenshot 4](/screenshots/report.png)
+*REPORT PAGE*
+
+![Screenshot 5](/screenshots/logout.png)
+*LOGOUT PAGE*
+
 ## Requirements
 
 To run **PROJECT - X**, ensure you have the following prerequisites installed:
