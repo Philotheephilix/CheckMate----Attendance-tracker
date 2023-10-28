@@ -46,7 +46,7 @@ Welcome to **PROJECT - X**, an innovative attendance tracker application develop
 ![Screenshot 2](/screenshots/overview.png)
 *OVERVIEW PAGE*
 
-![Screenshot 3](/screenshots/profile.png)
+![Screenshot 3](/screenshots/Profile.png)
 *PROFILE PAGE*
 
 ![Screenshot 4](/screenshots/report.png)
