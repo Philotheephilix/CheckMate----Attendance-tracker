@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static',filename='ad_home.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=IBM+Plex+Sans:wght@100;400&family=Raleway+Dots&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
             
             
             <div class="import item"  id="active"> <i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</div>
-            <div class="update item" ><i class="bi bi-upload"></i>UPDATE</div>
+            <div class="update item" ><a href="{{ url_for('adminreport',username=username)}}"><i class="bi bi-upload"></i>UPDATE</a></div>
             <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
             <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
         </div>
