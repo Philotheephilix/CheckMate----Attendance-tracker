@@ -283,8 +283,9 @@ li :hover{
     scale:1.04;
 }
 .blocker{
-    display: block;
+   
     position: relative;
+    display: block;
     transition: 0.3s ease-in-out;
    backdrop-filter: blur(1px);
     width: 100%;
