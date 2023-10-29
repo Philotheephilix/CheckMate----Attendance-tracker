@@ -11,10 +11,10 @@ import base64
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+admin_users={'sairam':'lancey',
+             'valan':'valan'}
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
-
 try:
     os.mkdir("report_data")
 except:
@@ -32,7 +32,8 @@ def index():
 def login():
     username = request.form["username"]
     password = request.form["password"]
-
+    if username in admin_users and admin_users[username]==password:
+        return redirect(url_for("adminhome",username=username))
     result = collection.find_one({"key": "value"})
     query={"Roll No":username}
     resultt=collection.find_one(query)
@@ -43,7 +44,12 @@ def login():
     else:
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
-    
+@app.route("/adminhome/<username>")
+def adminhome(username):
+    return render_template("adminhome/index.html",username=username)
+@app.route("/adminreport/<username>")
+def adminreport(username):
+    return render_template("adminreport/index.html",username=username)
 @app.route("/overview/<username>" )
 def overview(username):
     query={"Roll No":username}
