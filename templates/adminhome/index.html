@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=IBM+Plex+Sans:wght@100;400&family=Raleway+Dots&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        </style>
+</head>
+<body>
+    <div class="navbar"> 
+       
+           
+                <div class="logo">LOGO</div>
+        <div class="menu">
+            
+            
+            <div class="import item"  id="active"> <i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</div>
+            <div class="update item" ><i class="bi bi-upload"></i>UPDATE</div>
+            <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
+            <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
+        </div>
+        <input type="checkbox"  class = "check" id="check"  >
+        <label for="check"  class=" checkbtn material-symbols-outlined">
+            menu
+            </label>
+    </div>
+    <div class="logout-tab">
+        <div class="close" id="close"><i class="bi bi-x-circle-fill"></i></div>
+        <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
+        <div class="btns">
+            <button type="button" class="cancel" id="cancel"><i class="bi bi-x"></i>Cancel</button>
+            <button type="button" class="out"><i class="bi bi-box-arrow-left"></i>logout</button>
+        </div>
+    </div>
+    <div class="blocker" id="blocker"></div>
+    <div class="report-tab">
+        <div class="closer" id="closer"><i class="bi bi-x-circle-fill"></i></div>
+        <div class="msg">Do you want to download full attendance report ?</div>
+        <div class="btns">
+            <button type="button" class="cancelr" id="cancelr"><i class="bi bi-x"></i>Cancel</button>
+            <button type="button" class="download"><i class="bi bi-cloud-arrow-down-fill"></i>Download</button>
+        </div>
+    </div>
+
+    <div class="importer">
+        <div class="container">
+            
+            <label for="year" id="year">Select Year</label>
+            <select name="year" aria-disabled="true" aria-valuetext="dept">
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+            </select>
+            <label for="dept" id="dept">Select Department</label>
+            <select name="dept"  aria-disabled="true" aria-valuetext="dept">
+                <option value="cse">CSE</option>
+                <option value="ece">ECE</option>
+                <option value="eee">EEE</option>
+                <option value="it">IT</option>
+                <option value="mech">MECH</option>
+            </select>
+            <label for="excel">Upload file </label>
+
+            <input type="file" name="excel" id="up">
+            <button type="submit" class="sub">SUBMIT</button>
+        </div>
+    </div>
+</div>
+    <script>
+        var checkbox = document.getElementById("check");
+    var menuElements = document.getElementsByClassName("menu");
+    var logout =document.getElementById("logout");
+    var logtab = document.getElementsByClassName("logout-tab");
+    var f =0;
+    var blocker =document.getElementById("blocker");
+    var clos = document.getElementById("close");
+    var can = document.getElementById("cancel");
+    var report =document.getElementById("report");
+    var reptab = document.getElementsByClassName("report-tab");
+    var j =0;
+    var closerr= document.getElementById("closer");
+    var cancelrr= document.getElementById("cancelr");
+    // Function to update the style of menu elements based on checkbox state
+    function updateMenuStyle() {
+        for (var i = 0; i < menuElements.length; i++) {
+            if (checkbox.checked) {
+                menuElements[i].style.left = "0";
+                blocker.style.display = "block";
+            } else {
+                blocker.style.display = "none";
+                menuElements[i].style.left = "-150%"; // Hide the menu
+            }
+        }
+    }
+    function updateLogout() {
+        for (var i = 0; i < logtab.length; i++) {
+            if (f==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
+                logtab[i].style.left = "0";
+                f=1;
+                reptab[i].style.left = "-100%";
+                j=0; 
+                blocker.style.display = "block";
+            } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "none";
+                logtab[i].style.left = "-100%";
+                f=0;
+                 // Hide the menu
+            }
+        }
+    }
+    function closer(){
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
+        for (var i = 0; i < logtab.length; i++) {
+        logtab[i].style.left = "-100%";
+        f=0;}
+    }
+    function updatereport() {
+        for (var i = 0; i < reptab.length; i++) {
+            if (j==0) {
+                blocker.style.zIndex = "2";
+                blocker.style.display = "block";
+                reptab[i].style.left = "0";
+                j=1;
+                logtab[i].style.left = "-100%";
+                f=0;
+            } else {
+                blocker.style.zIndex = "1";
+                blocker.style.display = "none";
+                reptab[i].style.left = "-100%";
+                j=0; 
+            }
+        }
+    }
+    function closerrr(){
+        blocker.style.zIndex = "1";
+        blocker.style.display = "none";
+        for (var i = 0; i < reptab.length; i++) {
+        reptab[i].style.left = "-100%";
+        j=0;}
+    }
+    function closemenu(){
+        blocker.style.zIndex = "1";
+        for (var i = 0; i < menuElements.length; i++) {
+            checkbox.checked = false;
+                blocker.style.display = "none";
+                menuElements[i].style.left = "-150%"; // Hide the menu
+            
+        }
+
+    }
+    blocker.addEventListener("click",closer);
+    blocker.addEventListener("click",closerrr);
+    blocker.addEventListener("click",closemenu);
+
+    checkbox.addEventListener("change", updateMenuStyle);
+    logout.addEventListener("click", updateLogout);
+    clos.addEventListener("click",closer );
+    report.addEventListener("click", updatereport);
+    can.addEventListener("click", closer);
+    closerr.addEventListener("click",closerrr );
+    cancelrr.addEventListener("click", closerrr);
+    closerrr();
+   closer();
+    updateMenuStyle();
+       </script>  </body>
+</html>
