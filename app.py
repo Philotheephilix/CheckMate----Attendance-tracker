@@ -44,9 +44,22 @@ def login():
     else:
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
-@app.route("/adminhome/<username>")
+@app.route("/adminhome/<username>", methods=["GET","POST"])
 def adminhome(username):
-    return render_template("adminhome/index.html",username=username)
+    if request.method == "POST":
+        year = request.form["year"]
+        dept = request.form["dept"]
+        dept=dept.upper()
+        print(year, dept)
+        print(request.files)
+        if 1 :
+            print("done")
+            file = request.files['file']
+            file.save("data/" + dept + "/" + file.filename)
+        return render_template("adminhome/index.html", username=username)
+    else:
+        # Handle GET request logic (if needed)
+        return render_template("adminhome/index.html", username=username)
 @app.route("/adminreport/<username>")
 def adminreport(username):
     return render_template("adminreport/index.html",username=username)
