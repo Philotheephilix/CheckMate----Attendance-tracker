@@ -1,7 +1,7 @@
 import pymongo
 import openpyxl as xl
-xlsx=xl.load_workbook("data/attendance.xlsx",data_only=True)
-sheet=xlsx["I_CSE-B"]
+xlsx=xl.load_workbook("data/CSE/attendance.xlsx",data_only=True)
+sheet=xlsx["II_CSE-B"]
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]

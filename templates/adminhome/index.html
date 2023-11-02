@@ -62,27 +62,29 @@
 
     <div class="importer">
         <div class="container">
-            
-            <label for="year" id="year">Select Year</label>
-            <select name="year" aria-disabled="true" aria-valuetext="dept">
-                <option value="I">I</option>
-                <option value="II">II</option>
-                <option value="III">III</option>
-                <option value="IV">IV</option>
-            </select>
-            <label for="dept" id="dept">Select Department</label>
-            <select name="dept"  aria-disabled="true" aria-valuetext="dept">
-                <option value="cse">CSE</option>
-                <option value="ece">ECE</option>
-                <option value="eee">EEE</option>
-                <option value="it">IT</option>
-                <option value="mech">MECH</option>
-            </select>
-            <label for="excel">Upload file </label>
-
-            <input type="file" name="excel" id="up">
-            <button type="submit" class="sub">SUBMIT</button>
+            <form action="{{ url_for('adminhome', username=username) }}" method="post" enctype="multipart/form-data">
+                <label for="year" id="year">Select Year</label>
+                <select name="year"  aria-valuetext="dept" id="year">
+                    <option value="I">I</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                </select>
+                <label for="dept" id="dept">Select Department</label>
+                <select name="dept"  aria-valuetext="dept" id="dept">
+                    <option value="cse">CSE</option>
+                    <option value="ece">ECE</option>
+                    <option value="eee">EEE</option>
+                    <option value="it">IT</option>
+                    <option value="mech">MECH</option>
+                </select>
+    
+                <input type="file" class="file" name="file"
+                >
+            <input type="submit" value="Upload">
+            </form>
         </div>
+        
     </div>
 </div>
     <script>
