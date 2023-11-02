@@ -62,7 +62,7 @@
 
     <div class="importer">
         <div class="container">
-            <form action="{{ url_for('adminhome', username=username) }}" method="post" >
+            <form action="{{ url_for('adminhome', username=username) }}" method="post" enctype="multipart/form-data">
                 <label for="year" id="year">Select Year</label>
                 <select name="year"  aria-valuetext="dept" id="year">
                     <option value="I">I</option>
@@ -79,8 +79,8 @@
                     <option value="mech">MECH</option>
                 </select>
     
-                <input type="file" name="file"
-                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                <input type="file" class="file" name="file"
+                >
             <input type="submit" value="Upload">
             </form>
         </div>

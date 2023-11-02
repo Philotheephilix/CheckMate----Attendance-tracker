@@ -120,7 +120,7 @@ def report(username):
         os.mkdir("report_data/"+username)
     except:
         pass
-    input_excel_file = 'data/attendance.xlsx'
+    input_excel_file = 'data/CSE/attendance.xlsx'
     data = pd.read_excel(input_excel_file)
     data.to_csv('report_data/'+username+'/output.csv', index=False)
     with open('report_data/'+username+"/output.csv", mode='r') as file:
