@@ -239,22 +239,12 @@ i{
     padding-right: 250px;
 }
 
-#up{
-    border-radius: 8px;
-    border: none;
-    margin-top: 5%;
-    margin-bottom: 15%;
-     background: #403f40b8;
-    padding: 5% 2%;
-}
-input[type="file"]{
-    background: #7f7f7f;
-   
-    
-}
-input button{
-    background: #7f7f7f;
 
+
+
+.container input:focus{
+   
+    border: 1px solid white;
 }
 .sub{
     background-color: var(--red);
