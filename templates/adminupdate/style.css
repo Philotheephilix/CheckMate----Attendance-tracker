@@ -205,9 +205,9 @@ i{
    margin-bottom: 3%;
     background-color: #403f40b8;
     padding: 4% 2%;
- 
+    width: 100%;
     border-radius: 8px;
-    padding-right: 250px;
+   
 }
 
 .sub,.down{
@@ -347,5 +347,8 @@ i{
     }
     .img .edit-btn i{
         font-size: 17px;
+    }
+    .container input[type="text"]{
+        width: 50vw;
     }
 }
