@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='ad_report.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='ad_update.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Courgette&family=IBM+Plex+Sans:wght@100;400&family=Raleway+Dots&display=swap" rel="stylesheet">
@@ -32,10 +33,10 @@
         <div class="menu">
             
             
-        <div class="import item"  id="active"> <i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</div>
-        <div class="update item" ><i class="bi bi-upload"></i>UPDATE</div>
-        <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
-        <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
+            <div class="import item"  > <i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</div>
+            <div class="update item"id="active" ><i class="bi bi-upload"></i>UPDATE</div>
+            <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
+            <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
         </div>
         <input type="checkbox"  class = "check" id="check"  >
         <label for="check"  class=" checkbtn material-symbols-outlined">
@@ -56,10 +57,16 @@
             
             <label for="regno" id="regno">Enter Register Number</label>
             <input type="text" name="regno">
+            <button type="submit" class="down">Download</button>
+
+            <label for="up" id="up">Upload updated file </label>
+            <input type="file"  name="up">
             
-            <button type="submit" class="sub">SUBMIT</button>
+            <button type="submit" class="sub">Submit</button>
         </div>
     </div>
+
+    
 </div>
     <script>
         var checkbox = document.getElementById("check");
@@ -70,7 +77,6 @@
     //var blocker =document.getElementById("blocker");
     var clos = document.getElementById("close");
     var can = document.getElementById("cancel");
-
     // Function to update the style of menu elements based on checkbox state
     function updateMenuStyle() {
         for (var i = 0; i < menuElements.length; i++) {
@@ -90,7 +96,7 @@
                 blocker.style.display = "block";
                 logtab[i].style.left = "0";
                 f=1;
-
+                
                 j=0; 
                 blocker.style.display = "block";
             } else {
@@ -109,7 +115,7 @@
         logtab[i].style.left = "-100%";
         f=0;}
     }
-
+    
     function closemenu(){
         blocker.style.zIndex = "1";
         for (var i = 0; i < menuElements.length; i++) {
@@ -121,15 +127,22 @@
 
     }
     blocker.addEventListener("click",closer);
-
+   
     blocker.addEventListener("click",closemenu);
 
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );
-
+   
     can.addEventListener("click", closer);
+    
+   
    closer();
     updateMenuStyle();
        </script>  </body>
 </html>
+
+
+
+
+

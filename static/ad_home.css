@@ -113,60 +113,31 @@ i{
     transition:  0.3s ease-in-out;
     z-index: 3;
 }
-.report-tab{
-    position: fixed;
-    width: 30%;
-    TOP:40%;
-    left: -100%;
-    user-select: none;
-    height:max-content;
-    padding: 1% 2% 2%;
-    margin-left: 35%;
-    margin-right: 35%;
-    backdrop-filter: blur(100px);
-    background-image: linear-gradient(45deg,rgb(132, 132, 132,0.2),rgb(100,100,100,0.3));
-    color: #b5acb5;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 14px;
-    transition:  0.3s ease-in-out;
-    z-index: 3;
-}
-.logout-tab .btns,.report-tab .btns{
+.logout-tab .btnss{
     display: flex;
     justify-content: space-around;
 }
-.logout-tab .cancel ,.report-tab .cancelr{
+.logout-tab .cancel {
     border: none;
     padding: 1% 2% 2%;
     background-color: #ff002f;
     margin-top: 6%;
     border-radius: 5px;
     color: #f5f5f5;
+    margin-right: 2%;
 }
 .logout-tab .out{
+    margin-left: 2%;
     border: none;
     padding: 1% 2% 2%;
     background-color: var(--pur);
     margin-top: 6%;
     border-radius: 5px;
     color: #f5f5f5;}   
-.report-tab .download{
-    border: none;
-    padding: 1% 2% 2%;
-    background-color: green;
-    margin-top: 6%;
-    border-radius: 5px;
-    color: #f5f5f5;   
-}
-.report-tab .download:hover{
-    background-color: rgb(3, 153, 3);
-    scale:1.04;
-}
+
 .blocker{
    
-    position: relative;
-    display: block;
+    position: fixed;
     transition: 0.3s ease-in-out;
    backdrop-filter: blur(1px);
     width: 100%;
@@ -178,16 +149,11 @@ i{
     font-size: 17px;
     color: #f5f4f6;
 }
-.download i{
-    padding-right: 0.51;
-    font-size: 17px;
-    color: #f5f4f6;
-}
-.cancel i,.cancelr i{
+.cancel i{
     font-size: 17px;
     padding: 0;
 }
-.close,.closer{
+.close{
     padding: 0px;
    margin-left: 95%;
    margin-bottom: 4%;
@@ -195,11 +161,11 @@ i{
 .close i,.cancelr i{
     font-size: 20px;
 }
-.cancel:hover,.out:hover,.close:hover,.cancelr:hover,.closer:hover{
+.cancel:hover,.out:hover,.close:hover{
     scale: 1.05;
     
 }
-.cancel:hover,.cancelr:hover{
+.cancel:hover{
     background-color: #ff0048;
 }
 .out:hover{
@@ -210,12 +176,16 @@ i{
     color: var(--red);
 }
 .importer{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
+    margin-top: 3%;
+    height: max-content;
 }
 .container{
+    width: max-content;
     display: flex;
     flex-direction: column;
 }
@@ -225,7 +195,8 @@ i{
     padding: 5%;
     border-radius:8px ;
     border: 1px solid rgb(132, 132, 132,0.2);
-    box-shadow:0px 0px 24px  #373737;
+    box-shadow:inset 5px 5px 20px  #373737;
+    box-shadow:inset 3px 3px 30px  #252525;
 }
 .container select{
     color: #a3a3a3;
@@ -256,6 +227,10 @@ input button{
     background: #7f7f7f;
 
 }
+.sub:hover{
+    scale: 1.02;
+    background-color: var(--dpink);
+}
 .sub{
     background-color: var(--red);
     border: none;
@@ -263,6 +238,7 @@ input button{
     border-radius: 5px;
     color: #d8d8d8;
     margin-top: 5%;
+    transition: 0.1s ease-in-out;
 }
 .container  label{
     color: var(--red);
@@ -273,22 +249,22 @@ input button{
     }
 }
 @media (max-width:862px){
-    .logout-tab,.report-tab{
+    .logout-tab{
         font-size: 12px;
     }
     .close i,.closer i{
         font-size: 14px;
     }
-    .logout-tab .cancel,.logout-tab .out,.report-tab .cancelr,.report-tab .download{
+    .logout-tab .cancel,.logout-tab .out{
         font-size: 12px;
         padding:0% 4% 2%;
     }
-    .out i,.download i{
+    .out i,{
         padding: 3px;
     }
 }
 @media (max-width:844px){
-    .logout-tab,.report-tab{
+    .logout-tab{
         background-color: #0000008a;
     }
 

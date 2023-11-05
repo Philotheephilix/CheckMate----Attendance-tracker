@@ -177,6 +177,7 @@ i{
     color: var(--red);
 }
 .importer{
+    margin-top: 3%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -187,7 +188,8 @@ i{
     flex-direction: column;
 }
 .container{
-    width: 60%;
+    height: max-content;
+    width: 60vw;
     backdrop-filter: blur(100px);
     background-image: linear-gradient(45deg,rgb(132, 132, 132,0.2),rgb(100,100,100,0.3));
     padding: 5%;
@@ -199,7 +201,7 @@ i{
 .container input{
     color: #a3a3a3;
     border: none;
-    margin-top: 5%;
+    margin-top: 3%;
    margin-bottom: 3%;
     background-color: #403f40b8;
     padding: 4% 2%;
@@ -208,14 +210,7 @@ i{
    
 }
 
-
-
-
-.container input:focus{
-   
-    border: 1px solid white;
-}
-.sub{
+.sub,.down{
     background-color: var(--red);
     border: none;
     padding: 3%;
@@ -224,15 +219,28 @@ i{
     margin-top: 5%;
     transition: 0.1s ease-in-out;
 }
-.sub:hover{
+.down{
+    background-color: green;
+}
+
+.sub:hover,.down:hover{
     background-color: var(--dpink);
     scale: 1.02;
 }
-.container  label{
+.down:hover{
+    background-color: rgb(1, 152, 1);
+
+}
+#regno{
     color: var(--red);
     width: max-content;
     padding-bottom: 2%;
     border-bottom: 1px solid var(--red);
+}
+#up{
+    margin-top: 5%;
+    color: var(--red);
+    font-size: 13px;
 }
 @media (max-width:952px){
     .logo{
@@ -340,7 +348,7 @@ i{
     .img .edit-btn i{
         font-size: 17px;
     }
-    .container{
-        width: 60vw;
+    .container input[type="text"]{
+        width: 50vw;
     }
 }
