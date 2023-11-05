@@ -132,6 +132,8 @@ def adminhome(username):
             file.save("data/" + dept + "/" + dielen+".xlsx")
             dir="data/" + dept + "/" + dielen+".xlsx"
             init_db(dir)
+            file.save("data/" + dept + "/" + file.filename)
+
         return render_template("adminhome/index.html", username=username)
     else:
         # Handle GET request logic (if needed)
@@ -196,6 +198,7 @@ def report(username):
         os.mkdir("report_data/"+username)
     except:
         pass
+
     if "CS" in username:
         list=os.listdir("data/CSE")
         dep="CSE"
@@ -254,6 +257,49 @@ def report(username):
             if i!="report.xlsx":
                 os.remove("report_data/"+username+"/"+i)
         report_path="report_data/"+username+"/report.xlsx"    
+    input_excel_file = 'data/CSE/attendance.xlsx'
+    data = pd.read_excel(input_excel_file)
+    data.to_csv('report_data/'+username+'/output.csv', index=False)
+    with open('report_data/'+username+"/output.csv", mode='r') as file:
+        csv_reader = csv.reader(file)
+        list=[]
+        for row in csv_reader:
+            if "STUDENTS ATTENDANCE" in row:
+                i=row.index("STUDENTS ATTENDANCE")
+                row[i]=""
+            if "DATE" in row:
+                list.append(row[4:])
+            if "DAY ORDER" in row:
+                i=row.index("DAY ORDER")
+                row[i]="DAY"
+                list.append(row[4:])
+            if username in row:
+                list.append(row[4:])
+    fname="report_data/" + username + "/"+username+".csv"
+    with open(fname,"w") as file:
+        writer=csv.writer(file)
+        for i in list:
+            writer.writerow(i)
+    data1 = pd.read_csv("report_data/"+username+"/"+username+".csv")
+    for i in range(54):
+        a="Unnamed: "+str(i)
+        data1.rename({a:i}, axis="columns", inplace=True)
+    data1 = data1.dropna(axis=1, how='all')
+    data1.at[3, data1.columns[1]] = None
+    output_excel_file = "report_data/"+username+'/report.xlsx'
+    with pd.ExcelWriter(output_excel_file, engine='xlsxwriter') as writer:
+        data1.to_excel(writer, index=False, sheet_name='Sheet1')
+        workbook = writer.book
+        worksheet = writer.sheets['Sheet1']
+        for idx, col in enumerate(data1.columns):
+            max_length = max(data1[col].astype(str).apply(len).max(), len(str(col)))
+            worksheet.set_column(idx, idx, max_length)
+    cleanup=os.listdir("report_data/"+username+"/")
+    print(cleanup)
+    for i in cleanup:
+        if i!="report.xlsx":
+            os.remove("report_data/"+username+"/"+i)
+    report_path="report_data/"+username+"/report.xlsx"    
     return send_file(report_path, as_attachment=True)
 
 @app.route("/welcome")
