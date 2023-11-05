@@ -51,15 +51,6 @@
         </div>
     </div>
     <div class="blocker" id="blocker"></div>
-    <div class="report-tab">
-        <div class="closer" id="closer"><i class="bi bi-x-circle-fill"></i></div>
-        <div class="msg">Do you want to download full attendance report ?</div>
-        <div class="btns">
-            <button type="button" class="cancelr" id="cancelr"><i class="bi bi-x"></i>Cancel</button>
-            <button type="button" class="download"><i class="bi bi-cloud-arrow-down-fill"></i>Download</button>
-        </div>
-    </div>
-
     <div class="importer">
         <div class="container">
             <form action="{{ url_for('adminhome', username=username) }}" method="post" enctype="multipart/form-data">
@@ -93,14 +84,9 @@
     var logout =document.getElementById("logout");
     var logtab = document.getElementsByClassName("logout-tab");
     var f =0;
-    var blocker =document.getElementById("blocker");
+    //var blocker =document.getElementById("blocker");
     var clos = document.getElementById("close");
     var can = document.getElementById("cancel");
-    var report =document.getElementById("report");
-    var reptab = document.getElementsByClassName("report-tab");
-    var j =0;
-    var closerr= document.getElementById("closer");
-    var cancelrr= document.getElementById("cancelr");
     // Function to update the style of menu elements based on checkbox state
     function updateMenuStyle() {
         for (var i = 0; i < menuElements.length; i++) {
@@ -120,7 +106,7 @@
                 blocker.style.display = "block";
                 logtab[i].style.left = "0";
                 f=1;
-                reptab[i].style.left = "-100%";
+
                 j=0; 
                 blocker.style.display = "block";
             } else {
@@ -139,30 +125,6 @@
         logtab[i].style.left = "-100%";
         f=0;}
     }
-    function updatereport() {
-        for (var i = 0; i < reptab.length; i++) {
-            if (j==0) {
-                blocker.style.zIndex = "2";
-                blocker.style.display = "block";
-                reptab[i].style.left = "0";
-                j=1;
-                logtab[i].style.left = "-100%";
-                f=0;
-            } else {
-                blocker.style.zIndex = "1";
-                blocker.style.display = "none";
-                reptab[i].style.left = "-100%";
-                j=0; 
-            }
-        }
-    }
-    function closerrr(){
-        blocker.style.zIndex = "1";
-        blocker.style.display = "none";
-        for (var i = 0; i < reptab.length; i++) {
-        reptab[i].style.left = "-100%";
-        j=0;}
-    }
     function closemenu(){
         blocker.style.zIndex = "1";
         for (var i = 0; i < menuElements.length; i++) {
@@ -174,17 +136,13 @@
 
     }
     blocker.addEventListener("click",closer);
-    blocker.addEventListener("click",closerrr);
     blocker.addEventListener("click",closemenu);
 
     checkbox.addEventListener("change", updateMenuStyle);
     logout.addEventListener("click", updateLogout);
     clos.addEventListener("click",closer );
-    report.addEventListener("click", updatereport);
     can.addEventListener("click", closer);
-    closerr.addEventListener("click",closerrr );
-    cancelrr.addEventListener("click", closerrr);
-    closerrr();
+
    closer();
     updateMenuStyle();
        </script>  </body>
