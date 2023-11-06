@@ -141,6 +141,9 @@ def adminhome(username):
 @app.route("/adminreport/<username>")
 def adminreport(username):
     return render_template("adminreport/index.html",username=username)
+@app.route("/adminupdate/<username>")
+def adminupdate(username):
+    return render_template("adminupdate/index.html",username=username)
 @app.route("/overview/<username>" )
 def overview(username):
     query={"Roll No":username}

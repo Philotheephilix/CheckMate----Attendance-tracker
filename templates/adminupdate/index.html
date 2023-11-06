@@ -33,9 +33,9 @@
         <div class="menu">
             
             
-            <div class="import item"  > <i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</div>
+            <div class="import item"  > <a href="{{ url_for('adminhome',username=username) }}"><i class="bi bi-cloud-arrow-up-fill"></i> IMPORT</a></div>
             <div class="update item"id="active" ><i class="bi bi-upload"></i>UPDATE</div>
-            <div class="report item" id="report"><i class="bi bi-bar-chart-fill"></i>REPORT</div>
+            <div class="report item" id="report"><a href="{{ url_for('adminreport',username=username)}}"><i class="bi bi-bar-chart-fill"></i>REPORT</a></div>
             <div class="logout item" id="logout"><i class="bi bi-box-arrow-left"></i>LOGOUT</div>
         </div>
         <input type="checkbox"  class = "check" id="check"  >
@@ -48,7 +48,7 @@
         <div class="msg">ARE YOU SURE DO YOU WANT TO LOGOUT ?</div>
         <div class="btns">
             <button type="button" class="cancel" id="cancel"><i class="bi bi-x"></i>Cancel</button>
-            <button type="button" class="out"><i class="bi bi-box-arrow-left"></i>logout</button>
+            <button type="button" class="out"><a href="{{ url_for('index') }}"><i class="bi bi-box-arrow-left"></i>logout</a></button>
         </div>
     </div>
     <div class="blocker" id="blocker"></div>
