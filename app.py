@@ -14,6 +14,9 @@ UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 admin_users={'sairam':'lancey',
              'valan':'valan'}
+
+
+
 def init_db(filename):
     xlsx=xl.load_workbook(filename,data_only=True)
     sheet=xlsx.worksheets[0]
@@ -93,9 +96,13 @@ client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]
 
+
+
 @app.route("/")
 def index():
     return render_template("login/index.html")
+
+
 
 
 @app.route("/login", methods=["POST"])
@@ -115,6 +122,9 @@ def login():
     else:
         error = "Invalid username or password. Please try again."
         return render_template("login/index.html", error=error)
+
+
+
 @app.route("/adminhome/<username>", methods=["GET","POST"])
 def adminhome(username):
     if request.method == "POST":
@@ -138,12 +148,49 @@ def adminhome(username):
     else:
         # Handle GET request logic (if needed)
         return render_template("adminhome/index.html", username=username)
-@app.route("/adminreport/<username>")
+
+
+
+@app.route("/adminreport/<username>",methods=["GET","POST"])
 def adminreport(username):
+
     return render_template("adminreport/index.html",username=username)
+
+
+
+@app.route("/adreport",methods=["GET","POST"])
+def adreport():
+
+    regno = request.form["regno"]
+    report(regno)
+    username=regno
+    return report(regno)
+    #return render_template("/report/<username>",username=username)
+
+
+@app.route('/download',methods=["POST"])
+def download():
+    username=request.form["regno"]
+    if "CS" in username:
+        username="CSE"
+    elif "IT" in username:
+        username="IT"
+    elif "ME" in username:
+        username="MECH"
+    elif "EC" in username:
+        username="ECE"
+    elif "EE" in username:
+        username="EEE"
+    list=os.listdir('data/'+username)
+    for i in list:
+        return send_file('data/'+username+"/"+i, as_attachment=True)
+
 @app.route("/adminupdate/<username>")
 def adminupdate(username):
     return render_template("adminupdate/index.html",username=username)
+
+
+
 @app.route("/overview/<username>" )
 def overview(username):
     query={"Roll No":username}
@@ -155,6 +202,9 @@ def overview(username):
     atte_per=resultt["atte_per"]
     total_per=resultt["total_per"]
     return(render_template("overview/overview.html",username=username,perc=perc,perc_ring=perc_ring,atte_per=atte_per,total_per=total_per))
+
+
+
 @app.route("/profile/<username>")
 def profile(username):
     query={"Roll No":username}
@@ -181,13 +231,13 @@ def profile(username):
         encoded_image = 'data:image/jpeg;base64,' + base64.b64encode(open(default_image_path, 'rb').read()).decode('utf-8')
     return render_template("profile/index.html",username=username,result=resultt,name=name,roll=roll,reg=reg,yr=yr,age=age,sem=sem,dob=dob,email=email,cls=cls,ph=ph,image=encoded_image)
     
+
+
 @app.route('/upload/<username>', methods=['POST'])
 def upload(username):   
     file = request.files['image']
-    
     fs = gridfs.GridFS(db)
     image = fs.find_one({'filename': username})
-    
     if image:
         fs.delete(image._id)
         print("deleted")
@@ -195,8 +245,12 @@ def upload(username):
     print("added")
     return 'File uploaded successfully'
 
+
+
+
 @app.route("/report/<username>")
 def report(username):
+
     try:
         os.mkdir("report_data/"+username)
     except:
@@ -218,6 +272,7 @@ def report(username):
         list=os.listdir("data/EEE")
         dep="EEE"
     for i in list:
+        print(i)
         data = pd.read_excel("data/"+dep+"/"+i)
         data.to_csv('report_data/'+username+'/output.csv', index=False)
         with open('report_data/'+username+"/output.csv", mode='r') as file:
@@ -246,49 +301,6 @@ def report(username):
             data1.rename({a:i}, axis="columns", inplace=True)
         data1 = data1.dropna(axis=1, how='all')
         data1.at[3, data1.columns[1]] = None
-        output_excel_file = "report_data/"+username+'/report.xlsx'
-        with pd.ExcelWriter(output_excel_file, engine='xlsxwriter') as writer:
-            data1.to_excel(writer, index=False, sheet_name='Sheet1')
-            workbook = writer.book
-            worksheet = writer.sheets['Sheet1']
-            for idx, col in enumerate(data1.columns):
-                max_length = max(data1[col].astype(str).apply(len).max(), len(str(col)))
-                worksheet.set_column(idx, idx, max_length)
-        cleanup=os.listdir("report_data/"+username+"/")
-        print(cleanup)
-        for i in cleanup:
-            if i!="report.xlsx":
-                os.remove("report_data/"+username+"/"+i)
-        report_path="report_data/"+username+"/report.xlsx"    
-    input_excel_file = 'data/CSE/attendance.xlsx'
-    data = pd.read_excel(input_excel_file)
-    data.to_csv('report_data/'+username+'/output.csv', index=False)
-    with open('report_data/'+username+"/output.csv", mode='r') as file:
-        csv_reader = csv.reader(file)
-        list=[]
-        for row in csv_reader:
-            if "STUDENTS ATTENDANCE" in row:
-                i=row.index("STUDENTS ATTENDANCE")
-                row[i]=""
-            if "DATE" in row:
-                list.append(row[4:])
-            if "DAY ORDER" in row:
-                i=row.index("DAY ORDER")
-                row[i]="DAY"
-                list.append(row[4:])
-            if username in row:
-                list.append(row[4:])
-    fname="report_data/" + username + "/"+username+".csv"
-    with open(fname,"w") as file:
-        writer=csv.writer(file)
-        for i in list:
-            writer.writerow(i)
-    data1 = pd.read_csv("report_data/"+username+"/"+username+".csv")
-    for i in range(54):
-        a="Unnamed: "+str(i)
-        data1.rename({a:i}, axis="columns", inplace=True)
-    data1 = data1.dropna(axis=1, how='all')
-    data1.at[3, data1.columns[1]] = None
     output_excel_file = "report_data/"+username+'/report.xlsx'
     with pd.ExcelWriter(output_excel_file, engine='xlsxwriter') as writer:
         data1.to_excel(writer, index=False, sheet_name='Sheet1')
@@ -301,17 +313,15 @@ def report(username):
     print(cleanup)
     for i in cleanup:
         if i!="report.xlsx":
-            os.remove("report_data/"+username+"/"+i)
-    report_path="report_data/"+username+"/report.xlsx"    
-    return send_file(report_path, as_attachment=True)
+            os.remove("report_data/"+username+"/"+i) 
+    return send_file('report_data/'+username+'/report.xlsx', as_attachment=True)
+
 
 @app.route("/welcome")
 def welcome():
     return "Welcome to the protected area!"
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-

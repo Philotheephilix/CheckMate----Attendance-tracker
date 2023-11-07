@@ -54,15 +54,13 @@
     <div class="blocker" id="blocker"></div>
     <div class="importer">
         <div class="container">
-            
-            <label for="regno" id="regno">Enter Register Number</label>
-            <input type="text" name="regno">
-            <button type="submit" class="down">Download</button>
-
-            <label for="up" id="up">Upload updated file </label>
-            <input type="file"  name="up">
-            
-            <button type="submit" class="sub">Submit</button>
+            <form action="/download" method="post">
+                <div class="container">
+                    <label for="regno">Enter Roll Number</label>
+                    <input type="text" name="regno" id="regno">
+                    <button type="submit" class="sub">SUBMIT</button>
+                </div>
+            </form>
         </div>
     </div>
 
