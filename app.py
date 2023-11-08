@@ -12,12 +12,12 @@ import openpyxl as xl
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-admin_users={'sairam':'lancey',
+admin_users={'admin':'admin',
              'valan':'valan'}
 
 
 
-def init_db(filename):
+def init_db(filename,yr):
     xlsx=xl.load_workbook(filename,data_only=True)
     sheet=xlsx.worksheets[0]
     client = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -51,7 +51,7 @@ def init_db(filename):
                 "name": namee,
                 "Roll No": roll_no,
                 "Reg No": reg_no,
-                "Yr": "II",
+                "Yr": yr ,
                 "Age": 18,
                 "Sem": 3,
                 "DOB": "1/1/2001",
@@ -92,6 +92,12 @@ try:
     os.mkdir("report_data")
 except:
     pass
+for i in ["CSE","MECH","IT","ECE","EEE"]:
+    for j in ["I","II","III","IV"]:
+        try:
+            os.mkdir("data/"+i+"/"+j)
+        except:
+            pass
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]
@@ -139,11 +145,9 @@ def adminhome(username):
             dirlist=os.listdir()
             dielen=len(dirlist)
             dielen=str(dielen)
-            file.save("data/" + dept + "/" + dielen+".xlsx")
-            dir="data/" + dept + "/" + dielen+".xlsx"
-            init_db(dir)
-            file.save("data/" + dept + "/" + file.filename)
-
+            file.save("data/" + dept + "/"+ year+"/" + dielen+".xlsx")
+            dir="data/" + dept + "/" +year+"/"+ dielen+".xlsx"
+            init_db(dir,year)
         return render_template("adminhome/index.html", username=username)
     else:
         # Handle GET request logic (if needed)
@@ -170,7 +174,13 @@ def adreport():
 
 @app.route('/download',methods=["POST"])
 def download():
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    db = client["Project-X"]
+    collection = db["studentDet"]
     username=request.form["regno"]
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    yr=resultt["Yr"]
     if "CS" in username:
         username="CSE"
     elif "IT" in username:
@@ -181,9 +191,9 @@ def download():
         username="ECE"
     elif "EE" in username:
         username="EEE"
-    list=os.listdir('data/'+username)
+    list=os.listdir('data/'+username+"/"+yr)
     for i in list:
-        return send_file('data/'+username+"/"+i, as_attachment=True)
+        return send_file('data/'+username+"/"+yr+"/"+i, as_attachment=True)
 
 @app.route("/adminupdate/<username>")
 def adminupdate(username):
@@ -250,30 +260,38 @@ def upload(username):
 
 @app.route("/report/<username>")
 def report(username):
-
+    client = pymongo.MongoClient("mongodb://localhost:27017/")
+    db = client["Project-X"]
+    collection = db["studentDet"]
+    query={"Roll No":username}
+    resultt=collection.find_one(query)
+    yr=resultt["Yr"]
+    print(yr)
     try:
         os.mkdir("report_data/"+username)
     except:
         pass
 
     if "CS" in username:
-        list=os.listdir("data/CSE")
+        list=os.listdir("data/CSE/"+yr)
         dep="CSE"
     elif "IT" in username:
-        list=os.listdir("data/IT")
+        list=os.listdir("data/IT/"+yr)
         dep="IT"
     elif "ME" in username:
-        list=os.listdir("data/MECH")
+        list=os.listdir("data/MECH/"+yr)
         dep="MECH"
     elif "EC" in username:
-        list=os.listdir("data/ECE")
+        list=os.listdir("data/ECE/"+yr)
         dep="ECE"
     elif "EE" in username:
-        list=os.listdir("data/EEE")
+        list=os.listdir("data/EEE/"+yr)
         dep="EEE"
+    print(list)
     for i in list:
         print(i)
-        data = pd.read_excel("data/"+dep+"/"+i)
+        data = pd.read_excel("data/"+dep+"/"+yr+"/"+i)
+        print("data/"+dep+"/"+yr+"/"+i)
         data.to_csv('report_data/'+username+'/output.csv', index=False)
         with open('report_data/'+username+"/output.csv", mode='r') as file:
             csv_reader = csv.reader(file)
