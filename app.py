@@ -12,8 +12,6 @@ import openpyxl as xl
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-admin_users={'admin':'admin',
-             'valan':'valan'}
 
 
 
@@ -115,8 +113,10 @@ def index():
 def login():
     username = request.form["username"]
     password = request.form["password"]
-    if username in admin_users and admin_users[username]==password:
-        return redirect(url_for("adminhome",username=username))
+    ad_collection=db['admin']
+    for document in ad_collection.find():
+        if document==ad_collection.find_one({"username":username,"password":password}):
+            return redirect(url_for("adminhome",username=username))
     result = collection.find_one({"key": "value"})
     query={"Roll No":username}
     resultt=collection.find_one(query)
