@@ -187,6 +187,7 @@ i{
 .container{
     width: max-content;
     display: flex;
+    width: 50%;
     flex-direction: column;
 }
 .container{
@@ -259,7 +260,7 @@ input button{
         font-size: 12px;
         padding:0% 4% 2%;
     }
-    .out i,{
+    .out i{
         padding: 3px;
     }
 }
