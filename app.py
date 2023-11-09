@@ -121,7 +121,11 @@ def login():
     query={"Roll No":username}
     resultt=collection.find_one(query)
     print(resultt)
-    result=str(resultt["Reg No"])
+    result=""
+    try:
+        result=str(resultt["Reg No"])
+    except:
+        pass
     if password==result:
         print("done")
         return redirect(url_for("overview",username=username))
