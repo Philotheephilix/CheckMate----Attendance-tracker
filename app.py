@@ -9,6 +9,25 @@ import gridfs
 import io
 import base64
 import openpyxl as xl
+client = pymongo.MongoClient("mongodb+srv://maintainer_philix:mongotest@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
+
+try:
+    os.mkdir("report_data")
+except:
+    pass
+for i in ["CSE","MECH","IT","ECE","EEE"]:
+    try:
+        os.mkdir("data/"+i)
+
+    except:
+        pass
+for i in ["CSE","MECH","IT","ECE","EEE"]:
+    for j in ["I","II","III","IV"]:
+        try:
+            os.mkdir("data/"+i+"/"+j)
+
+        except:
+            pass
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/profile_db'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -18,7 +37,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def init_db(filename,yr):
     xlsx=xl.load_workbook(filename,data_only=True)
     sheet=xlsx.worksheets[0]
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["Project-X"]
     collection = db["studentDet"]
     column=0
@@ -73,14 +91,8 @@ def init_db(filename,yr):
                             }
                         }
                 res=collection.update_one({"Roll No": roll_no},update_query)
-                #collection.update_one({"Roll No": roll_no},{"$set":{"atte_per":attended}})
-                #collection.update_one({"Roll No": roll_no},{"$set":{"total_per":total}})
-
-                print(res)
             else:
-                print("added")
-                collection.insert_one(user_dict)
-            #userlist.append(user_dict) 
+                collection.insert_one(user_dict) 
             print("all data added") 
         print(userlist)
     return "SUCCESS"     
@@ -96,7 +108,6 @@ for i in ["CSE","MECH","IT","ECE","EEE"]:
             os.mkdir("data/"+i+"/"+j)
         except:
             pass
-client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["Project-X"]
 collection = db["studentDet"]
 
@@ -178,7 +189,6 @@ def adreport():
 
 @app.route('/download',methods=["POST"])
 def download():
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["Project-X"]
     collection = db["studentDet"]
     username=request.form["regno"]
@@ -264,7 +274,6 @@ def upload(username):
 
 @app.route("/report/<username>")
 def report(username):
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["Project-X"]
     collection = db["studentDet"]
     query={"Roll No":username}
