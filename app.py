@@ -29,8 +29,8 @@ for i in ["CSE","MECH","IT","ECE","EEE"]:
         except:
             pass
 app = Flask(__name__)
-UPLOAD_FOLDER = 'static/profile_db'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+db = client["Project-X"]
+collection = db["studentDet"]
 
 
 
@@ -96,20 +96,7 @@ def init_db(filename,yr):
             print("all data added") 
         print(userlist)
     return "SUCCESS"     
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
-try:
-    os.mkdir("report_data")
-except:
-    pass
-for i in ["CSE","MECH","IT","ECE","EEE"]:
-    for j in ["I","II","III","IV"]:
-        try:
-            os.mkdir("data/"+i+"/"+j)
-        except:
-            pass
-db = client["Project-X"]
-collection = db["studentDet"]
+
 
 
 
