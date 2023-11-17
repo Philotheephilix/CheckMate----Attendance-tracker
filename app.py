@@ -9,7 +9,7 @@ import gridfs
 import io
 import base64
 import openpyxl as xl
-client = pymongo.MongoClient("mongodb+srv://maintainer_philix:mongotest@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://maintainer_philix:qwertyuiop@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
 
 try:
     os.mkdir("report_data")

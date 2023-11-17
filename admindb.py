@@ -1,5 +1,5 @@
 import pymongo
-client = pymongo.MongoClient("mongodb+srv://maintainer_philix:mongotest@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://maintainer_philix:qwertyuiop@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
 db = client["Project-X"]
 query = { "username": "maintainer@philix" }
 update = { "$set": {"username":"maintainer@philix","password":"dev_door@philix"} }
