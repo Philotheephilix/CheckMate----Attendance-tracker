@@ -6,6 +6,10 @@
     text-decoration: none;
     list-style: none;
 }
+a{
+    color: inherit;
+    text-decoration: none;
+}
 :root{
     
     --bg : #000000;
