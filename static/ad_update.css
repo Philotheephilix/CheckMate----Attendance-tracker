@@ -6,10 +6,6 @@
     text-decoration: none;
     list-style: none;
 }
-a{
-    color: inherit;
-    text-decoration: none;
-}
 :root{
     
     --bg : #000000;
@@ -210,7 +206,7 @@ i{
     background-color: #403f40b8;
     padding: 4% 2%;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 8px;
    
 }
 
@@ -235,7 +231,7 @@ i{
     background-color: rgb(1, 152, 1);
 
 }
-.container label{
+#regno{
     color: var(--red);
     width: max-content;
     padding-bottom: 2%;
@@ -353,6 +349,6 @@ i{
         font-size: 17px;
     }
     .container input[type="text"]{
-        width: 100%;
+        width: 50vw;
     }
 }
