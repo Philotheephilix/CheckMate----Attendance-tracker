@@ -1,6 +1,6 @@
-# PROJECT - X: Attendance Tracker
+# CheckMate: Attendance Tracker
 
-Welcome to **PROJECT - X**, an innovative attendance tracker application developed by @philotheephilix and @sairammr. This comprehensive tool is designed to simplify attendance management for educational institutions, providing powerful features and a user-friendly interface.
+Welcome to **CheckMate**, an innovative attendance tracker application developed by @philotheephilix and @sairammr. This comprehensive tool is designed to simplify attendance management for educational institutions, providing powerful features and a user-friendly interface.
 
 ## Table of Contents
 - [Overview](#overview)
