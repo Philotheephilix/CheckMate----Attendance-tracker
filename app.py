@@ -10,7 +10,10 @@ import io
 import base64
 import openpyxl as xl
 client = pymongo.MongoClient("mongodb+srv://maintainer_philix:qwertyuiop@carbonpi.hiozz58.mongodb.net/?retryWrites=true&w=majority")
-
+try:
+    os.mkdir("data")
+except:
+    pass
 try:
     os.mkdir("report_data")
 except:
