@@ -14,7 +14,7 @@ Welcome to **CheckMate**, an innovative attendance tracker application developed
 
 ## Overview
 
-**PROJECT - X** is an attendance tracker web application that allows educational institutions to efficiently manage student attendance records. It offers real-time tracking, percentage calculation, period-wise reports, and detailed user profiles. With a frontend built using HTML, CSS, and JavaScript, and backend processing powered by Python and MongoDB, this application ensures seamless performance and reliability.
+**CheckMate** is an attendance tracker web application that allows educational institutions to efficiently manage student attendance records. It offers real-time tracking, percentage calculation, period-wise reports, and detailed user profiles. With a frontend built using HTML, CSS, and JavaScript, and backend processing powered by Python and MongoDB, this application ensures seamless performance and reliability.
 
 ## Features
 
